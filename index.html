@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Ideli's First Portifolio</title>
+    
+    <!-- Fonte Inter (mantendo a estética anterior) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Ícones Lucide para um design limpo -->
+    <script type="module">
+        import { createIcons, Menu, X, Code, Globe, Mail, ArrowUpRight, Github, Linkedin, MessageSquare } from 'https://cdn.skypack.dev/lucide?dts';
+        createIcons({ icons: { Menu, X, Code, Globe, Mail, ArrowUpRight, Github, Linkedin, MessageSquare } });
+    </script>
+
+</head>
+<body>
+
+    <!-- 1. Cabeçalho e Navegação (Header) -->
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">
+                &lt;Ideli Zanesco/&gt;
+            </a>
+
+            <!-- Menu Desktop -->
+            <div class="menu-desktop hidden">
+                <a href="#sobre">Sobre</a>
+                <a href="#habilidades">Habilidades</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#contato">Contato</a>
+            </div>
+
+            <!-- Botão Menu Mobile -->
+            <button id="menu-toggle" class="menu-toggle">
+                <i data-lucide="menu" class="icon" style="width:24px; height:24px;"></i>
+            </button>
+        </nav>
+
+        <!-- Menu Mobile (oculto por padrão) -->
+        <div id="mobile-menu" class="menu-mobile hidden">
+            <a href="#sobre" onclick="toggleMenu()">Sobre</a>
+            <a href="#habilidades" onclick="toggleMenu()">Habilidades</a>
+            <a href="#projetos" onclick="toggleMenu()">Projetos</a>
+            <a href="#contato" onclick="toggleMenu()">Contato</a>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- 2. Seção Hero (Apresentação) -->
+        <section id="home">
+            <div class="hero-content">
+                <div class="avatar-container">
+                    <!-- Placeholder de Imagem - Substitua pelo seu avatar -->
+                    <img src="foto1.jpeg" alt="">
+                </div>
+                <h1 class="hero-title">
+                    Olá, eu sou <span class="block">Ideli Zanesco.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Desenvolvedor Full-Stack apaixonado por construir soluções web inovadoras.
+                </p>
+                <a href="#projetos" class="btn-primary">
+                    Ver Meus Projetos
+                    <i data-lucide="arrow-up-right" style="width:20px; height:20px; margin-left:0.5rem;"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. Seção Sobre (About Me) -->
+        <section id="sobre">
+            <div class="text-center mb-12">
+                <h2>Sobre Mim</h2>
+                <p class="subtitle">Minha jornada no desenvolvimento web.</p>
+            </div>
+            <div class="about-content">
+                <p>
+                    Comecei minha carreira de desenvolvimento há X anos, movido pela curiosidade de entender como a tecnologia transforma ideias em realidade. Minha especialidade é criar aplicações robustas e escaláveis, com foco na experiência do usuário e na arquitetura de código limpa.
+                </p>
+                <p>
+                    Sou um profissional proativo, sempre buscando aprender novas tecnologias e metodologias (como metodologias ágeis e CI/CD). Tenho experiência trabalhando em equipes multidisciplinares e estou sempre pronto para enfrentar novos desafios que exijam criatividade e dedicação.
+                </p>
+            </div>
+        </section>
+        
+        <!-- 4. Seção Habilidades (Skills) -->
+        <section id="habilidades">
+            <div class="text-center mb-12">
+                <h2>Minhas Habilidades Técnicas</h2>
+                <p class="subtitle">Ferramentas e tecnologias que utilizo no dia a dia.</p>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Card de Habilidade Exemplo 1 -->
+                <div class="skill-card">
+                    <i data-lucide="code" class="icon"></i>
+                    <h3>Front-end</h3>
+                    <ul>
+                        <li>React, Vue.js</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>CSS Puro, SASS</li>
+                    </ul>
+                </div>
+                <!-- Card 2 -->
+                <div class="skill-card">
+                    <i data-lucide="globe" class="icon"></i>
+                    <h3>Back-end</h3>
+                    <ul>
+                        <li>Node.js, Python/Django</li>
+                        <li>APIs RESTful</li>
+                        <li>Autenticação (JWT)</li>
+                    </ul>
+                </div>
+                <!-- Card 3 -->
+                <div class="skill-card">
+                    <i data-lucide="message-square" class="icon"></i>
+                    <h3>Banco de Dados</h3>
+                    <ul>
+                        <li>PostgreSQL, MongoDB</li>
+                        <li>SQL e NoSQL</li>
+                        <li>Otimização de Query</li>
+                    </ul>
+                </div>
+                <!-- Card 4 -->
+                <div class="skill-card">
+                    <i data-lucide="github" class="icon"></i>
+                    <h3>DevOps/Outros</h3>
+                    <ul>
+                        <li>Git, GitHub, GitLab</li>
+                        <li>Docker, AWS básico</li>
+                        <li>Testes Unitários/E2E</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Seção Projetos (Projects) -->
+        <section id="projetos">
+            <div class="text-center mb-12">
+                <h2>Meus Principais Projetos</h2>
+                <p class="subtitle">Uma amostra do meu trabalho recente.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Projeto 1 -->
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <span>Placeholder do Projeto 1</span>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>Plataforma E-commerce</h3>
+                        <p>Sistema de vendas online completo com carrinho de compras, integração de pagamento e painel administrativo.</p>
+                        <div class="tags-container">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                        <a href="#" target="_blank" class="project-link">
+                            Ver Código/Demo
+                            <i data-lucide="arrow-up-right" style="width:16px; height:16px;"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Projeto 2 -->
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <span>Placeholder do Projeto 2</span>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>App de Gerenciamento de Tarefas</h3>
+                        <p>Um aplicativo de produtividade pessoal com recursos de arrastar e soltar e sincronização em tempo real.</p>
+                        <div class="tags-container">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">TypeScript</span>
+                        </div>
+                        <a href="#" target="_blank" class="project-link">
+                            Ver Código/Demo
+                            <i data-lucide="arrow-up-right" style="width:16px; height:16px;"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Projeto 3 -->
+                <div class="project-card">
+                    <div class="project-image-placeholder">
+                        <span>Placeholder do Projeto 3</span>
+                    </div>
+                    <div class="project-card-content">
+                        <h3>API para Serviços de Clima</h3>
+                        <p>Uma API de alto desempenho para consulta de dados climáticos em tempo real, com caching e monitoramento.</p>
+                        <div class="tags-container">
+                            <span class="tag">Python</span>
+                            <span class="tag">Django</span>
+                            <span class="tag">Docker</span>
+                        </div>
+                        <a href="#" target="_blank" class="project-link">
+                            Ver Código/Demo
+                            <i data-lucide="arrow-up-right" style="width:16px; height:16px;"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. Seção Contato (Contact) -->
+        <section id="contato">
+            <div class="text-center mb-12">
+                <h2>Entre em Contato</h2>
+                <p class="subtitle">Vamos construir algo incrível juntos.</p>
+            </div>
+
+            <div class="contact-card">
+                <!-- Links de Contato -->
+                <div class="contact-links">
+                    <a href="mailto:seuemail@exemplo.com" class="contact-link" target="_blank">
+                        <i data-lucide="mail"></i>
+                        <span>E-mail</span>
+                    </a>
+                    <a href="https://github.com/idyzf" class="contact-link" target="_blank">
+                        <i data-lucide="github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ideli-zanesco-fontes-baptista-3bb949159/" class="contact-link" target="_blank">
+                        <i data-lucide="linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+
+                <p class="text-center" style="color: #D1D5DB; margin-top: 1rem;">
+                    Ficarei feliz em discutir oportunidades de trabalho, projetos open source ou ideias de colaboração.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 7. Rodapé (Footer) -->
+    <footer>
+        <p>
+            &copy; <span id="current-year"></span> Ideli Zanesco. Developed with HTML CSS and JS.
+        </p>
+    </footer>
+
+    <!-- JavaScript para interatividade -->
+    <script>
+        // Função para mostrar/esconder o menu mobile
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconContainer = document.getElementById('menu-toggle');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                // Altera o ícone de menu para 'X'
+                menuIconContainer.innerHTML = '<i data-lucide="x" class="icon" style="width:24px; height:24px;"></i>';
+            } else {
+                mobileMenu.classList.add('hidden');
+                // Altera o ícone de volta para 'Menu'
+                menuIconContainer.innerHTML = '<i data-lucide="menu" class="icon" style="width:24px; height:24px;"></i>';
+            }
+            
+            // Re-renderizar ícones do Lucide após a mudança
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        }
+
+        // Adiciona listener ao botão de toggle
+        document.getElementById('menu-toggle').addEventListener('click', toggleMenu);
+
+        // Define o ano atual no rodapé
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

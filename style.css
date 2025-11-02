@@ -1,0 +1,433 @@
+ /* Variáveis CSS para cores */
+ :root {
+    --primary: #7A6EFC; 
+    --primary-hover: #FA170A;
+    --dark-bg: #040121; 
+    --dark-card: #3a0d43 ; 
+    --text-main: #E2E7EA; 
+    --text-secondary: #B1BCC5; 
+    --border-color: #55188E ; 
+    --cabecalho: #040121;
+    --skill-card: #8F99EC;
+}
+
+/* Estilos Globais e Reset Básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* Container (max-width e centralização) */
+.container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Títulos */
+section h2 {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 700; /* font-bold */
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+section p.subtitle {
+    font-size: 1.125rem; /* text-lg */
+    color: var(--text-secondary);
+}
+
+/* Links e Botões */
+a {
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s, background-color 0.3s;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    border-radius: 0.75rem; /* rounded-xl */
+    background-color: var(--primary);
+    color: #fff;
+    font-weight: 500;
+    box-shadow: 0 10px 15px -3px rgba(40, 130, 55, 0.3), 0 4px 6px -2px rgba(43, 120, 52, 0.05); /* shadow-xl com cor primária */
+}
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+/* 1. Cabeçalho e Navegação */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: var(--cabecalho);
+    backdrop-filter: color(var(--cabecalho));
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.logo {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700;
+    color: var(--primary);
+}
+.logo:hover {
+    color: var(--text-main);
+}
+
+/* Menu Desktop */
+.menu-desktop a {
+    font-size: 1.125rem; /* text-lg */
+    color: var(--text-main);
+    margin-left: 2rem;
+}
+.menu-desktop a:hover {
+    color: var(--primary);
+}
+
+/* Menu Mobile */
+.menu-toggle {
+    color: var(--text-main);
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.menu-mobile {
+    background-color: rgba(30, 41, 59, 0.95); /* dark-card/95 */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.menu-mobile a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #fff;
+}
+.menu-mobile a:hover {
+    background-color: rgba(79, 70, 229, 0.5); /* primary/50 */
+}
+
+/* 2. Seção Hero */
+#home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 6rem;
+    padding-bottom: 3rem;
+}
+.hero-content {
+    text-align: center;
+    max-width: 56rem; /* max-w-4xl */
+}
+.avatar-container {
+    margin: 0 auto 1.5rem;
+    width: 8rem; /* w-32 */
+    height: 8rem; /* h-32 */
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--primary);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+}
+.avatar-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.hero-title {
+    font-size: 3rem; /* text-5xl */
+    font-weight: 800; /* font-extrabold */
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    
+    /* Efeito Gradiente para Título (CSS Puro) */
+    background-image: linear-gradient(to right, var(--primary), #60A5FA); /* from-primary to-blue-400 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.hero-title span {
+    display: block;
+}
+.hero-subtitle {
+    font-size: 1.25rem; /* text-xl */
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+/* Media Queries para Hero (Responsividade) */
+@media (min-width: 640px) { /* sm: */
+    .hero-title {
+        font-size: 4.5rem; /* sm:text-7xl */
+    }
+    .hero-subtitle {
+        font-size: 1.5rem; /* sm:text-2xl */
+    }
+}
+
+/* 3. Seção Sobre e 4. Habilidades */
+#sobre, #habilidades, #projetos, #contato {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    border-top: 1px solid var(--border-color);
+}
+@media (min-width: 768px) { /* md: */
+    #sobre, #habilidades, #projetos, #contato {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+}
+
+.about-content {
+    max-width: 42rem; /* max-w-3xl */
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.125rem; /* text-lg */
+    color: #D1D5DB; /* gray-300 */
+    text-align: justify;
+}
+.about-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* 4. Habilidades Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 64rem; /* max-w-5xl */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Card de Habilidade */
+.skill-card {
+    background-color: var(--dark-card);
+    padding: 1.5rem;
+    border-radius: 1rem; /* rounded-2xl */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-xl */
+    transform: scale(1);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    border-bottom: 4px solid transparent;
+}
+
+.skill-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3); /* hover:shadow-primary/30 */
+}
+
+.skill-card .icon {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.75rem;
+}
+.skill-card h3 {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+.skill-card ul {
+    font-size: 0.875rem; /* text-sm */
+    color: var(--text-secondary);
+    list-style: disc;
+    margin-left: 1rem;
+}
+.skill-card ul li {
+    margin-bottom: 0.25rem;
+}
+
+/* Cores de Borda e Ícones específicas */
+.skill-card:nth-child(1) { border-bottom-color: var(--skill-card); }
+.skill-card:nth-child(1) .icon { color: var(--skill-card); }
+.skill-card:nth-child(2) { border-bottom-color: var(--skill-card) }
+.skill-card:nth-child(2) .icon { color: var(--skill-card) }
+.skill-card:nth-child(3) { border-bottom-color: var(--skill-card) } 
+.skill-card:nth-child(3) .icon { color: var(--skill-card) }
+.skill-card:nth-child(4) { border-bottom-color: var(--skill-card) } 
+.skill-card:nth-child(4) .icon { color: var(--skill-card) }
+
+/* Media Query para Habilidades Grid (Desktop) */
+@media (min-width: 768px) { /* md: */
+    .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* 5. Projetos Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Card de Projeto */
+.project-card {
+    background-color: var(--dark-card);
+    border-radius: 1rem; /* rounded-2xl */
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+    transition: transform 0.3s, ring 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.5); /* Efeito de anel customizado no hover */
+}
+
+.project-image-placeholder {
+    height: 12rem; /* h-48 */
+    background-color: #374151; /* gray-700 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.project-card-content {
+    padding: 1.5rem;
+}
+
+.project-card-content h3 {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+}
+
+.project-card-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    background-color: rgba(79, 70, 229, 0.2); /* primary/20 */
+    color: var(--primary);
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 500;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px; /* rounded-full */
+}
+
+.project-link {
+    color: var(--primary);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+}
+.project-link:hover {
+    color: #fff;
+}
+.project-link svg {
+    margin-left: 0.25rem;
+}
+
+/* Media Query para Projetos Grid (Desktop) */
+@media (min-width: 768px) { /* md: */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1024px) { /* lg: */
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 6. Seção Contato */
+.contact-card {
+    max-width: 36rem; /* max-w-xl */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--dark-card);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-link {
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.875rem; /* text-sm */
+}
+.contact-link:hover {
+    color: var(--primary);
+}
+.contact-link svg {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.25rem;
+}
+
+/* 7. Rodapé */
+footer {
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    background-color: rgba(30, 41, 59, 0.5); /* dark-card/50 */
+}
+footer p {
+    color: var(--text-secondary);
+    font-size: 0.875rem; /* text-sm */
+}
+
+/* Ocultar elementos em mobile por padrão */
+.hidden {
+    display: none;
+}
+
+/* Media Query para ocultar menu mobile em desktop */
+@media (min-width: 768px) {
+    .menu-desktop {
+        display: flex !important;
+    }
+    .menu-toggle {
+        display: none !important;
+    }
+    .menu-mobile {
+        display: none !important;
+    }
+}
