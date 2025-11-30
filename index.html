@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Ideli's First Portifolio</title>
+    <title>Ideli's Portifolio</title>
     
     <!-- Fonte Inter (mantendo a estética anterior) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     
     <!-- Ícones Lucide para um design limpo -->
     <script type="module">
-        import { createIcons, Menu, X, Code, Globe, Mail, ArrowUpRight, Github, Linkedin, MessageSquare } from 'https://cdn.skypack.dev/lucide?dts';
-        createIcons({ icons: { Menu, X, Code, Globe, Mail, ArrowUpRight, Github, Linkedin, MessageSquare } });
+        import { createIcons, Menu, X, Code, Globe, Mail, ArrowUpRight, Github, Linkedin, MessageSquare, Sun, Moon } from 'https://cdn.skypack.dev/lucide?dts';
+        createIcons({ icons: { Menu, X, Code, Globe, Mail, ArrowUpRight, Github, Linkedin, MessageSquare, Sun, Moon } });
     </script>
 
 </head>
@@ -27,24 +27,30 @@
 
             <!-- Menu Desktop -->
             <div class="menu-desktop hidden">
-                <a href="#sobre">Sobre</a>
-                <a href="#habilidades">Habilidades</a>
-                <a href="#projetos">Projetos</a>
-                <a href="#contato">Contato</a>
+                <a href="#sobre">About</a>
+                <a href="#habilidades">Skills</a>
+                <a href="#projetos">Projects</a>
+                <a href="#contato">Contact</a>
             </div>
 
-            <!-- Botão Menu Mobile -->
-            <button id="menu-toggle" class="menu-toggle">
-                <i data-lucide="menu" class="icon" style="width:24px; height:24px;"></i>
-            </button>
+            <div class="nav-buttons">
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <span id="icon-container"></span>
+                </button>
+                <!-- Botão Menu Mobile -->
+                <button id="menu-toggle" class="menu-toggle">
+                    <i data-lucide="menu" style="width:24px; height:24px;"></i>
+                </button>
+            </div>
         </nav>
 
         <!-- Menu Mobile (oculto por padrão) -->
         <div id="mobile-menu" class="menu-mobile hidden">
-            <a href="#sobre" onclick="toggleMenu()">Sobre</a>
-            <a href="#habilidades" onclick="toggleMenu()">Habilidades</a>
-            <a href="#projetos" onclick="toggleMenu()">Projetos</a>
-            <a href="#contato" onclick="toggleMenu()">Contato</a>
+            <a href="#sobre" onclick="toggleMenu()">About</a>
+            <a href="#habilidades" onclick="toggleMenu()">Skills</a>
+            <a href="#projetos" onclick="toggleMenu()">Project</a>
+            <a href="#contato" onclick="toggleMenu()">Contacts</a>
         </div>
     </header>
 
@@ -58,13 +64,13 @@
                     <img src="foto1.jpeg" alt="">
                 </div>
                 <h1 class="hero-title">
-                    Olá, eu sou <span class="block">Ideli Zanesco.</span>
+                    Hello, I am <span class="block">Ideli Zanesco.</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Desenvolvedor Full-Stack apaixonado por construir soluções web inovadoras.
+                    Full-Stack Developer focused on genomics and bioinformatic software development.
                 </p>
                 <a href="#projetos" class="btn-primary">
-                    Ver Meus Projetos
+                    See my Projects
                     <i data-lucide="arrow-up-right" style="width:20px; height:20px; margin-left:0.5rem;"></i>
                 </a>
             </div>
@@ -73,15 +79,15 @@
         <!-- 3. Seção Sobre (About Me) -->
         <section id="sobre">
             <div class="text-center mb-12">
-                <h2>Sobre Mim</h2>
-                <p class="subtitle">Minha jornada no desenvolvimento web.</p><br>
+                <h2>About me</h2>
+                <p class="subtitle">My journey as a genomic specialist and developer</p><br>
             </div>
             <div class="about-content">
                 <p>
-                    Comecei minha carreira de desenvolvimento há X anos, movido pela curiosidade de entender como a tecnologia transforma ideias em realidade. Minha especialidade é criar aplicações robustas e escaláveis, com foco na experiência do usuário e na arquitetura de código limpa.
+                    I began my career as a Biotechnologist, where I developed a strong passion for bioinformatics and programming. More recently, I’ve been expanding my expertise into software engineering and pursuing an MBA focused on this field. My goal is to bridge the gap between genomics and software engineering to drive innovation in biological data research and analysis.
                 </p>
                 <p>
-                    Sou um profissional proativo, sempre buscando aprender novas tecnologias e metodologias (como metodologias ágeis e CI/CD). Tenho experiência trabalhando em equipes multidisciplinares e estou sempre pronto para enfrentar novos desafios que exijam criatividade e dedicação.
+                    I am a proactive professional, always eager to learn new technologies and methodologies. I have experience working in multidisciplinary teams and am consistently ready to take on new challenges that require creativity, commitment, and dedication.
                 </p>
             </div>
         </section>
@@ -89,8 +95,8 @@
         <!-- 4. Seção Habilidades (Skills) -->
         <section id="habilidades">
             <div class="text-center mb-12">
-                <h2>Minhas Habilidades Técnicas</h2>
-                <p class="subtitle">Ferramentas e tecnologias que utilizo no dia a dia.</p>
+                <h2>My skill set</h2>
+                <p class="subtitle">Tools and technologies I use</p>
             </div>
 
             <div class="skills-grid">
@@ -100,8 +106,8 @@
                     <h3>Front-end</h3>
                     <ul>
                         <li>React, Vue.js</li>
-                        <li>JavaScript (ES6+)</li>
-                        <li>CSS Puro, SASS</li>
+                        <li>JavaScript</li>
+                        <li>CSS, HTML</li>
                     </ul>
                 </div>
                 <!-- Card 2 -->
@@ -109,7 +115,7 @@
                     <i data-lucide="globe" class="icon"></i>
                     <h3>Back-end</h3>
                     <ul>
-                        <li>Node.js, Python/Django</li>
+                        <li>Node.js, Python</li>
                         <li>APIs RESTful</li>
                         <li>Autenticação (JWT)</li>
                     </ul>
@@ -117,21 +123,20 @@
                 <!-- Card 3 -->
                 <div class="skill-card">
                     <i data-lucide="message-square" class="icon"></i>
-                    <h3>Banco de Dados</h3>
+                    <h3>Data Analysis</h3>
                     <ul>
                         <li>PostgreSQL, MongoDB</li>
-                        <li>SQL e NoSQL</li>
-                        <li>Otimização de Query</li>
+                        <li>SQL and NoSQL</li>
+                        <li>Query</li>
                     </ul>
                 </div>
                 <!-- Card 4 -->
                 <div class="skill-card">
                     <i data-lucide="github" class="icon"></i>
-                    <h3>DevOps/Outros</h3>
+                    <h3>DevOps</h3>
                     <ul>
                         <li>Git, GitHub, GitLab</li>
-                        <li>Docker, AWS básico</li>
-                        <li>Testes Unitários/E2E</li>
+                        <li>Docker, basic AWS</li>
                     </ul>
                 </div>
             </div>
@@ -140,8 +145,8 @@
         <!-- 5. Seção Projetos (Projects) -->
         <section id="projetos">
             <div class="text-center mb-12">
-                <h2>Meus Principais Projetos</h2>
-                <p class="subtitle">Uma amostra do meu trabalho recente.</p>
+                <h2>My main projects</h2>
+                <p class="subtitle">Samples of my recent work</p>
             </div>
 
             <div class="projects-grid">
@@ -275,6 +280,39 @@
 
         // Define o ano atual no rodapé
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const iconContainer = document.getElementById('icon-container');
+        const htmlEl = document.documentElement;
+
+        // Function to set the icon
+        const setIcon = (isDarkMode) => {
+            if (isDarkMode) {
+                iconContainer.innerHTML = '<i data-lucide="sun" style="width:24px; height:24px;"></i>';
+            } else {
+                iconContainer.innerHTML = '<i data-lucide="moon" style="width:24px; height:24px;"></i>';
+            }
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        };
+
+        // Check for saved theme in localStorage or system preference
+        let isDarkMode = localStorage.getItem('theme') === 'dark' || 
+                        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+        // Apply theme on initial load
+        if (isDarkMode) {
+            htmlEl.classList.add('dark-mode');
+        }
+        setIcon(isDarkMode);
+
+        themeToggle.addEventListener('click', () => {
+            isDarkMode = htmlEl.classList.toggle('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            setIcon(isDarkMode);
+        });
     </script>
 </body>
 </html>
