@@ -1,6 +1,5 @@
 :root {
-    /* 🌅 Sunset Light Mode Palette */
-    
+
     --bg-color: #fff7f3;               /* Soft peach sky */
     --card-bg: #ffffff;                /* Clean contrast for cards */
 
@@ -52,7 +51,6 @@
 
 
 
-/* 🌙 Sunset Dark Mode Palette */
 .dark-mode {
     --bg-color: #1a0f24;                    /* Deep violet night sky */
     --card-bg: #2a1633;                     /* Subtle plum for cards */
