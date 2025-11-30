@@ -86,7 +86,7 @@ body {
 }
 
 #theme-toggle svg {
-    fill: var(--text-primary);;
+    fill: var(--text-primary);
 }
 
 #theme-toggle svg:last-child {
