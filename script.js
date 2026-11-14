@@ -16,14 +16,27 @@
         { title: 'Linux & Git', sub: 'Shell, servers and version control.', tools: 'bash · servers · git · GitHub', level: 4, glyph: '$_', icon: 'fa-brands fa-git-alt', theme: 'brick' },
     ];
 
-    // img: optional screenshot path (e.g. 'assets/aiaia.jpg'); without it a collage cover is drawn
+    // img: optional screenshot path; without it a collage cover is drawn (color + glyph)
+    // link: leave out when the code isn't public; note: optional small line shown instead of the link
     const PROJECTS = [
-        { title: 'Aiaia', year: '2024', desc: 'Add a short description of this project — what it does and what you used.', tags: ['python', 'data'], link: 'https://github.com/idyzf', color: '#9B2C1F', glyph: 'Ai' },
-        { title: 'Project two', year: '2024', desc: 'Placeholder — replace with one of your projects.', tags: ['bioinformatics'], link: 'https://github.com/idyzf', color: '#5A1828', glyph: '02' },
-        { title: 'Project three', year: '2023', desc: 'Placeholder — replace with one of your projects.', tags: ['machine learning'], link: 'https://github.com/idyzf', color: '#2C0B13', glyph: '03' },
-        { title: 'Project four', year: '2023', desc: 'Placeholder — replace with one of your projects.', tags: ['R', 'stats'], link: 'https://github.com/idyzf', color: '#B5483A', glyph: '04' },
-        { title: 'Project five', year: '2022', desc: 'Placeholder — replace with one of your projects.', tags: ['SQL'], link: 'https://github.com/idyzf', color: '#7A2333', glyph: '05' },
-        { title: 'Project six', year: '2022', desc: 'Placeholder — replace with one of your projects.', tags: ['data viz'], link: 'https://github.com/idyzf', color: '#9B2C1F', glyph: '06' },
+        {
+            title: 'Machine Learning applied to Digital Pathology', short: 'Digital Pathology ML',
+            desc: 'A Python and R-based machine learning pipeline that segments cells in digital pathology images and predicts quantitative and qualitative immunohistochemistry (IHC) results.',
+            tags: ['Reticulate', 'Python', 'EBImage'], link: 'https://github.com/idyzf/Image-Analysis-reticulate',
+            img: 'Project1.png', color: '#9B2C1F', glyph: 'ML',
+        },
+        {
+            title: 'Gene Expression by Neural-Network Analysis', short: 'Gene Expression NN',
+            desc: 'An R pipeline that integrates neural network models with gene co-expression analysis to uncover regulatory patterns, highlight functional gene modules, and improve prediction of expression-driven phenotypes.',
+            tags: ['R', 'WGCNA', 'NGS'], link: 'https://github.com/idyzf/WGCNA/blob/main/WGCNA%20tentativa%202.R',
+            img: 'Project2.png', color: '#5A1828', glyph: 'NN',
+        },
+        {
+            title: 'Sample Sheet Assistant', short: 'Sample Sheet Assistant',
+            desc: 'A full-stack web application that automates the creation of NGS sequencing sample sheets, with real-time guidance on index orientation, color balance and sample configuration for error-free sequencing runs.',
+            tags: ['Python', 'Django', 'Docker'], note: 'Not an official product — code not available',
+            img: 'Project3.png', color: '#2C0B13', glyph: 'SS',
+        },
     ];
 
     /* ========================================================== */
@@ -318,25 +331,25 @@
         const polaroids = PROJECTS.map((p, i) => {
             const el = document.createElement('a');
             el.className = 'polaroid';
-            el.href = p.link || '#';
-            el.target = '_blank';
-            el.rel = 'noopener';
+            if (p.link) { el.href = p.link; el.target = '_blank'; el.rel = 'noopener'; }
+            else { el.tabIndex = 0; el.setAttribute('role', 'button'); }
             el.setAttribute('aria-label', p.title);
             el.style.setProperty('--a', `${i * STEP}deg`);
             el.style.setProperty('--tilt', `${(r() * 8 - 4).toFixed(1)}deg`);
             el.innerHTML = `
                 <div class="pol-inner">
                     <div class="pol-photo" style="--pc:${esc(p.color || '#9B2C1F')}">
-                        ${p.img ? `<img src="${esc(p.img)}" alt="">` : `<span class="pol-glyph">${esc(p.glyph || p.title[0])}</span>`}
+                        <span class="pol-glyph">${esc(p.glyph || p.title[0])}</span>
+                        ${p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy" onerror="this.remove()">` : ''}
                     </div>
-                    <p class="pol-cap">${esc(p.title)}</p>
+                    <p class="pol-cap">${esc(p.short || p.title)}</p>
                 </div>`;
-            // first click brings a polaroid to the front, second click opens it
-            el.addEventListener('click', e => { if (i !== active) { e.preventDefault(); goTo(i); } });
+            // first click brings a polaroid to the front, second click opens it (if it has a link)
+            el.addEventListener('click', e => { if (i !== active || !p.link) { e.preventDefault(); goTo(i); } });
             rim.appendChild(el);
 
             const li = document.createElement('li');
-            li.innerHTML = `<button type="button"><span>${pad(i + 1)}</span><span>${esc(p.title)}</span></button>`;
+            li.innerHTML = `<button type="button"><span>${pad(i + 1)}</span><span>${esc(p.short || p.title)}</span></button>`;
             li.firstElementChild.addEventListener('click', () => goTo(i));
             list.appendChild(li);
             return el;
@@ -360,13 +373,14 @@
             polaroids.forEach((el, k) => el.classList.toggle('is-active', k === i));
             [...list.children].forEach((li, k) => li.classList.toggle('active', k === i));
             $('#npNum').textContent = `track ${pad(i + 1)}`;
-            $('#npYear').textContent = p.year || '';
+            $('#npYear').textContent = p.year ? ` · ${p.year}` : '';
             $('#npTitle').textContent = p.title;
             $('#npDesc').textContent = p.desc || '';
             $('#npTags').innerHTML = (p.tags || []).map(t => `<li>${esc(t)}</li>`).join('');
-            const link = $('#npLink');
+            const link = $('#npLink'), note = $('#npNote');
             link.href = p.link || '#';
             link.style.display = p.link ? '' : 'none';
+            note.textContent = p.link ? '' : (p.note || '');
             if (!first && !reduce) { card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap'); }
         }
 

@@ -953,3 +953,8 @@ footer {
     html { scroll-behavior: auto; }
     .stamp, .marquee-track, .scroll-note { animation: none; }
 }
+
+/* project covers: the screenshot sits over the collage glyph */
+.pol-photo img { position: absolute; inset: 0; filter: sepia(.12) saturate(.92); }
+.np-note:empty { display: none; }
+.np-note { font-family: var(--hand); font-size: 1.35rem; color: var(--brick); transform: rotate(-2deg); }
