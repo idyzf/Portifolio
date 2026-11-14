@@ -25,19 +25,19 @@
             title: 'Genomics Software Survey', short: 'Genomic Survey',
             desc: 'An interactive, anonymous survey platform on genomics software engineering — with team scoring, a 3D DNA visualisation, a live ranking and automatic notifications.',
             tags: ['React', 'Three.js', 'Framer Motion'], link: 'https://idyzf.github.io/GS_Survey/', linkLabel: 'visit the site ↗',
-            color: '#9B2C1F', glyph: 'GS',
+            img: 'assets/projects/gs-survey.webp', imgPos: 'left center', color: '#0B0B10', glyph: 'GS',
         },
         {
             title: 'AI Agents', short: 'AI Agents',
             desc: 'A Discord bot backed by a self-hosted language model: a Qwen model served by Ollama, wrapped in a Qwen-Agent assistant and shipped with Docker.',
             tags: ['Python', 'Qwen-Agent', 'Ollama', 'Docker'], link: 'projects/ai-agents.html',
-            color: '#2C0B13', glyph: 'AI',
+            img: 'assets/projects/ai-agents.png', imgFit: 'contain', color: '#1B1B1F', glyph: 'AI',
         },
         {
             title: 'AtlasLife', short: 'AtlasLife',
             desc: 'An interactive genomics website: scroll to turn a 3D DNA helix and stop at short lessons on how DNA is built, copied, read and changed.',
             tags: ['JavaScript', 'Three.js', 'Genomics'], link: 'projects/atlaslife.html',
-            color: '#5A1828', glyph: 'DNA',
+            img: 'assets/projects/atlaslife.webp', imgPos: '12% center', color: '#1F1F21', glyph: 'DNA',
         },
         {
             title: 'Machine Learning applied to Digital Pathology', short: 'Digital Pathology ML',
@@ -363,7 +363,7 @@
                 <div class="pol-inner">
                     <div class="pol-photo" style="--pc:${esc(p.color || '#9B2C1F')}">
                         <span class="pol-glyph">${esc(p.glyph || p.title[0])}</span>
-                        ${p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy" onerror="this.remove()">` : ''}
+                        ${p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy" onerror="this.remove()" style="object-fit:${esc(p.imgFit || 'cover')};object-position:${esc(p.imgPos || 'center')};background:${esc(p.color || '#9B2C1F')}">` : ''}
                     </div>
                     <p class="pol-cap">${esc(p.short || p.title)}</p>
                 </div>`;
