@@ -123,8 +123,9 @@
        lanyard + 3D badge
        ========================================================== */
     const badge = (() => {
-        const zone = $('.lanyard-zone'), path = $('#strapPath');
-        const A = $('.photo-anchor'), B = $('.badge-anchor');
+        const zone = $('.lanyard-zone'), svg = $('#lanyard');
+        const paths = [$('#strapPathL'), $('#strapPathR')];
+        const anchors = $$('.photo-anchor'), frame = $('.photo-frame'), B = $('.badge-anchor');
         const card = $('.badge'), stage = $('.badge-stage');
         const s = { x: 0, y: 0, vx: 0, vy: 0, rz: 0, rx: 0, ry: 0, tx: 0, ty: 0, flip: 0, flipT: 0, drag: false, moved: false, px: 0, py: 0, sx: 0, sy: 0 };
 
@@ -176,12 +177,36 @@
             if (!reduce) { s.vx += d * .02; s.vy += Math.abs(d) * .01; }
         }, { passive: true });
 
+        // the two lanyard straps in the photo, in photo pixels (keep in sync with .photo-straps in index.html)
+        const PHOTO = { w: 899, h: 1599, strap: 72 };
+        const STRAPS = [[[298, 1000], [352, 1620]], [[529, 868], [391, 1620]]];
+        const dirs = STRAPS.map(([p, q]) => { const dx = q[0] - p[0], dy = q[1] - p[1], l = Math.hypot(dx, dy); return [dx / l, dy / l]; });
+
+        // put an anchor where each strap leaves the bottom of the (object-fit: cover) photo
+        function placeAnchors() {
+            const w = frame.clientWidth, h = frame.clientHeight;
+            if (!w || !h) return;
+            const sc = Math.max(w / PHOTO.w, h / PHOTO.h);
+            const vw = w / sc, vh = h / sc, x0 = (PHOTO.w - vw) / 2, yb = (PHOTO.h - vh) / 2 + vh;
+            STRAPS.forEach(([p, q], i) => {
+                const x = p[0] + (yb - p[1]) / (q[1] - p[1]) * (q[0] - p[0]);
+                anchors[i].style.left = `${((x - x0) / vw * 100).toFixed(2)}%`;
+            });
+            svg.style.setProperty('--strap-w', `${(PHOTO.strap * sc).toFixed(1)}px`);
+        }
+
         function drawStrap() {
-            const z = zone.getBoundingClientRect(), a = A.getBoundingClientRect(), b = B.getBoundingClientRect();
-            const ax = a.left - z.left, ay = a.top - z.top - 3;
-            const bx = b.left - z.left + s.x, by = b.top - z.top + s.y;
-            const d = Math.max(60, by - ay);
-            path.setAttribute('d', `M${ax.toFixed(1)},${ay.toFixed(1)} C${ax.toFixed(1)},${(ay + d * .5).toFixed(1)} ${bx.toFixed(1)},${(by - d * .45).toFixed(1)} ${bx.toFixed(1)},${by.toFixed(1)}`);
+            const z = zone.getBoundingClientRect(), b = B.getBoundingClientRect();
+            const bx0 = b.left - z.left + s.x, by = b.top - z.top + s.y;
+            const f = v => v.toFixed(1);
+            anchors.forEach((an, i) => {
+                const a = an.getBoundingClientRect();
+                const ax = a.left - z.left, ay = a.top - z.top - 3;
+                const bx = bx0 + (i ? 6 : -6);
+                const d = Math.max(60, by - ay), k = d * .4;
+                const [dx, dy] = dirs[i];
+                paths[i].setAttribute('d', `M${f(ax)},${f(ay)} C${f(ax + dx * k)},${f(ay + dy * k)} ${f(bx)},${f(by - d * .45)} ${f(bx)},${f(by)}`);
+            });
         }
 
         let visible = true, raf = 0;
@@ -205,8 +230,9 @@
         function start() { if (!raf) raf = requestAnimationFrame(tick); }
 
         new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) start(); }).observe(zone);
-        addEventListener('resize', drawStrap);
-        addEventListener('load', drawStrap);
+        placeAnchors();
+        addEventListener('resize', () => { placeAnchors(); drawStrap(); });
+        addEventListener('load', () => { placeAnchors(); drawStrap(); });
         start();
     })();
 
@@ -224,7 +250,7 @@
             el.innerHTML = `
                 <div class="ticket-body">
                     <div class="t-main">
-                        <div class="t-top"><span>IZF cinema club</span><span>admit one</span></div>
+                        <div class="t-top"><span>IZ cinema club</span><span>admit one</span></div>
                         <h3 class="t-title">${esc(sk.title)}</h3>
                         <p class="t-sub">${esc(sk.sub)}</p>
                         <div class="t-meta">

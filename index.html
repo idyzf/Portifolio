@@ -14,7 +14,7 @@
 <body>
 
     <header class="topbar">
-        <a href="#home" class="logo">IZF</a>
+        <a href="#home" class="logo">IZ</a>
         <nav>
             <a href="#about">about</a>
             <a href="#skills">skills</a>
@@ -27,11 +27,18 @@
         <!-- Hero + About share this zone so the lanyard can run from the photo to the 3D badge -->
         <div class="lanyard-zone">
             <svg id="lanyard" aria-hidden="true">
-                <defs><path id="strapPath" d="M0,0"></path></defs>
-                <use href="#strapPath" class="strap-shadow"></use>
-                <use href="#strapPath" class="strap"></use>
-                <use href="#strapPath" class="strap-stitch"></use>
-                <text class="strap-text" dominant-baseline="central"><textPath href="#strapPath" startOffset="6">IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦</textPath></text>
+                <defs>
+                    <path id="strapPathL" d="M0,0"></path>
+                    <path id="strapPathR" d="M0,0"></path>
+                </defs>
+                <use href="#strapPathL" class="strap-shadow"></use>
+                <use href="#strapPathR" class="strap-shadow"></use>
+                <use href="#strapPathL" class="strap"></use>
+                <use href="#strapPathR" class="strap"></use>
+                <use href="#strapPathL" class="strap-stitch"></use>
+                <use href="#strapPathR" class="strap-stitch"></use>
+                <text class="strap-text" dominant-baseline="central"><textPath href="#strapPathL" startOffset="10">IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦</textPath></text>
+                <text class="strap-text" dominant-baseline="central"><textPath href="#strapPathR" startOffset="40">IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦</textPath></text>
             </svg>
 
             <!-- 01 · HERO -->
@@ -55,9 +62,24 @@
                     <span class="tape tape-tl"></span>
                     <span class="tape tape-tr"></span>
                     <div class="photo-frame">
-                        <!-- Put your photo at assets/ideli.jpg. Adjust --lanyard-x in styles.css so the strap lines up with the lanyard in the photo. -->
-                        <img src="assets/ideli.jpg" alt="Portrait of Ideli Zanesco" onerror="this.closest('.photo-frame').classList.add('no-photo')">
-                        <span class="photo-fallback">your photo here<small>assets/ideli.jpg</small></span>
+                        <img src="assets/ideli.jpeg" alt="Portrait of Ideli Zanesco" onerror="this.closest('.photo-frame').classList.add('no-photo')">
+                        <span class="photo-fallback">your photo here<small>assets/ideli.jpeg</small></span>
+                        <!-- paper straps pasted over the lanyard in the photo (coordinates are in the photo's own pixels, 899×1599) -->
+                        <svg class="photo-straps" viewBox="0 0 899 1599" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                            <defs>
+                                <path id="photoStrapL" d="M298,1000 L352,1620"></path>
+                                <path id="photoStrapR" d="M529,868 L391,1620"></path>
+                            </defs>
+                            <use href="#photoStrapL" class="ps-shadow"></use>
+                            <use href="#photoStrapR" class="ps-shadow"></use>
+                            <use href="#photoStrapL" class="ps"></use>
+                            <use href="#photoStrapR" class="ps"></use>
+                            <use href="#photoStrapL" class="ps-stitch"></use>
+                            <use href="#photoStrapR" class="ps-stitch"></use>
+                            <text class="ps-text" dominant-baseline="central"><textPath href="#photoStrapL" startOffset="14">IDELI ZANESCO ✦ IDELI ZANESCO ✦ IDELI ZANESCO ✦</textPath></text>
+                            <text class="ps-text" dominant-baseline="central"><textPath href="#photoStrapR" startOffset="14">IDELI ZANESCO ✦ IDELI ZANESCO ✦ IDELI ZANESCO ✦</textPath></text>
+                        </svg>
+                        <span class="photo-anchor"></span>
                         <span class="photo-anchor"></span>
                     </div>
                     <figcaption>that's me ✶</figcaption>
@@ -68,7 +90,7 @@
                     <circle cx="100" cy="100" r="92" class="stamp-ring"></circle>
                     <circle cx="100" cy="100" r="52" class="stamp-ring"></circle>
                     <text class="stamp-text"><textPath href="#stampCircle">BIOINFORMATICS ✦ DATA ✦ MACHINE LEARNING ✦</textPath></text>
-                    <text x="100" y="112" text-anchor="middle" class="stamp-center">IZF</text>
+                    <text x="100" y="112" text-anchor="middle" class="stamp-center">IZ</text>
                 </svg>
 
                 <p class="scroll-note">scroll ↓</p>
@@ -81,7 +103,7 @@
                 <div class="about-copy">
                     <p class="kicker reveal">chapter 01</p>
                     <h2 class="h-section reveal">about<br>me</h2>
-                    <p class="reveal">Hi! I'm Ideli Zanesco-Fontes, a bioinformatician who is deeply interested in programming.</p>
+                    <p class="reveal">Hi! I'm Ideli Zanesco, a bioinformatician who is deeply interested in programming.</p>
                     <p class="reveal">Besides bioinformatics, I also work as a data and machine learning analyst. I just love what I do — and this little corner of the internet is where I share a bit of my passions.</p>
 
                     <div class="here-for reveal">
@@ -104,7 +126,7 @@
                             <span class="badge-slot"></span>
                             <div class="badge-head"><span>portfolio pass</span><span>№ 0001</span></div>
                             <div class="badge-photo">
-                                <img src="assets/ideli.jpg" alt="" onerror="this.parentElement.classList.add('no-photo')">
+                                <img src="assets/ideli.jpeg" alt="" onerror="this.parentElement.classList.add('no-photo')">
                                 <span class="badge-initials">IZ</span>
                             </div>
                             <p class="badge-name">Ideli<br><em>Zanesco</em></p>
@@ -162,7 +184,7 @@
                 <div class="vinyl-stage">
                     <div class="vinyl" id="vinyl">
                         <div class="vinyl-label">
-                            <span class="lbl-top">IZF RECORDS</span>
+                            <span class="lbl-top">IZ RECORDS</span>
                             <span class="lbl-side">side A</span>
                             <span class="lbl-stereo">STEREO</span>
                             <span class="lbl-rpm">33⅓</span>
