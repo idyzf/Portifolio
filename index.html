@@ -1,86 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ideli Zanesco-Fontes</title>
+    <title>Ideli Zanesco — Portfolio</title>
+    <meta name="description" content="Ideli Zanesco — bioinformatics, data and machine learning.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Pinyon+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <header>
-        <h1>IZF</h1>
+
+    <header class="topbar">
+        <a href="#home" class="logo">IZF</a>
         <nav>
-            <a> Github</a>
-            <a>LinkedIn</a>
+            <a href="#about">about</a>
+            <a href="#skills">skills</a>
+            <a href="#projects">projects</a>
+            <a href="#contact">contact</a>
         </nav>
     </header>
+
     <main>
-        <section>
+        <!-- Hero + About share this zone so the lanyard can run from the photo to the 3D badge -->
+        <div class="lanyard-zone">
+            <svg id="lanyard" aria-hidden="true">
+                <defs><path id="strapPath" d="M0,0"></path></defs>
+                <use href="#strapPath" class="strap-shadow"></use>
+                <use href="#strapPath" class="strap"></use>
+                <use href="#strapPath" class="strap-stitch"></use>
+                <text class="strap-text" dominant-baseline="central"><textPath href="#strapPath" startOffset="6">IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦ IDELI ZANESCO ✦ PORTFOLIO ✦</textPath></text>
+            </svg>
 
-            <div class="nameContainer">
-                <h1> Ideli Zanesco-Fontes</h1>
-                <p class="darkerText">I write code and build projects</p>
-            </div>
-            <div class="statsContainer">
-                <div class="imgContainer">
-                    <img src="https://media.licdn.com/dms/image/D5603AQEMF4nK9fL44Q/profile-displayphoto-shrink_200_200/0/1695733436069?e=1712188800&v=beta&t=LlpoRsbr6ifRvuBS3XF0sIgR8D-caG9GXx6dWbCrp74"
-                    alt="profile-img">
-                </div>
-                
-                <div class="stats">
-
-                    <div class="darkerText">
-                        <div>
-                            
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <p>27 Github Repositories</p>
-                    </div>
-                    <div class="darkerText">
-                        <div>
-
-                            <i class="fa-brands fa-github"></i>
-                        </div>
-                        <p>84 Contributions</p>
-                    </div>
-                    <div class="darkerText">
-                        <div>
-
-                            <i class="fa-solid fa-arrow-trend-up"></i>
-                        </div>
-                        <p>58 Commits This Year</p>
+            <!-- 01 · HERO -->
+            <section id="home" class="hero">
+                <div class="hero-copy">
+                    <span class="scrap scrap-pink" data-torn="all" data-seed="5"></span>
+                    <span class="tape tape-hero"></span>
+                    <p class="hello">hello, I'm</p>
+                    <h1 class="name" aria-label="Ideli Zanesco">
+                        <span class="name-line" data-split>Ideli</span>
+                        <span class="name-line" data-split>Zanesco</span>
+                    </h1>
+                    <p class="tagline">bioinformatics <i>✦</i> data <i>✦</i> machine learning</p>
+                    <div class="hero-actions">
+                        <a class="btn" href="#projects">explore my work</a>
+                        <a class="hand-link" href="#about">or meet me first ↓</a>
                     </div>
                 </div>
 
+                <figure class="hero-photo">
+                    <span class="tape tape-tl"></span>
+                    <span class="tape tape-tr"></span>
+                    <div class="photo-frame">
+                        <!-- Put your photo at assets/ideli.jpg. Adjust --lanyard-x in styles.css so the strap lines up with the lanyard in the photo. -->
+                        <img src="assets/ideli.jpg" alt="Portrait of Ideli Zanesco" onerror="this.closest('.photo-frame').classList.add('no-photo')">
+                        <span class="photo-fallback">your photo here<small>assets/ideli.jpg</small></span>
+                        <span class="photo-anchor"></span>
+                    </div>
+                    <figcaption>that's me ✶</figcaption>
+                </figure>
+
+                <svg class="stamp" viewBox="0 0 200 200" aria-hidden="true">
+                    <defs><path id="stampCircle" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"></path></defs>
+                    <circle cx="100" cy="100" r="92" class="stamp-ring"></circle>
+                    <circle cx="100" cy="100" r="52" class="stamp-ring"></circle>
+                    <text class="stamp-text"><textPath href="#stampCircle">BIOINFORMATICS ✦ DATA ✦ MACHINE LEARNING ✦</textPath></text>
+                    <text x="100" y="112" text-anchor="middle" class="stamp-center">IZF</text>
+                </svg>
+
+                <p class="scroll-note">scroll ↓</p>
+            </section>
+
+            <!-- 02 · ABOUT -->
+            <section id="about" class="about">
+                <div class="tear" data-seed="7"></div>
+
+                <div class="about-copy">
+                    <p class="kicker reveal">chapter 01</p>
+                    <h2 class="h-section reveal">about<br>me</h2>
+                    <p class="reveal">Hi! I'm Ideli Zanesco-Fontes, a bioinformatician who is deeply interested in programming.</p>
+                    <p class="reveal">Besides bioinformatics, I also work as a data and machine learning analyst. I just love what I do — and this little corner of the internet is where I share a bit of my passions.</p>
+
+                    <div class="here-for reveal">
+                        <span class="tape tape-card"></span>
+                        <p class="script">I'm here for…</p>
+                        <ul>
+                            <li>turning biological data into answers</li>
+                            <li>clean, reproducible code &amp; pipelines</li>
+                            <li>machine learning with purpose</li>
+                            <li>data stories people can actually read</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="badge-stage">
+                    <span class="badge-anchor"></span>
+                    <div class="badge" tabindex="0" role="button" aria-label="Interactive badge. Press to flip.">
+                        <span class="badge-clip"></span>
+                        <div class="badge-face badge-front">
+                            <span class="badge-slot"></span>
+                            <div class="badge-head"><span>portfolio pass</span><span>№ 0001</span></div>
+                            <div class="badge-photo">
+                                <img src="assets/ideli.jpg" alt="" onerror="this.parentElement.classList.add('no-photo')">
+                                <span class="badge-initials">IZ</span>
+                            </div>
+                            <p class="badge-name">Ideli<br><em>Zanesco</em></p>
+                            <p class="badge-role">bioinformatician · data &amp; ML</p>
+                            <div class="badge-foot">
+                                <div class="barcode" data-seed="3"></div>
+                                <span class="badge-stamp">all<br>access</span>
+                            </div>
+                            <span class="badge-glare"></span>
+                        </div>
+                        <div class="badge-face badge-back">
+                            <span class="badge-slot"></span>
+                            <p class="script">thanks for<br>stopping by</p>
+                            <dl class="badge-facts">
+                                <div><dt>role</dt><dd>bioinformatician</dd></div>
+                                <div><dt>also</dt><dd>data &amp; ML analyst</dd></div>
+                                <div><dt>loves</dt><dd>code, data, biology</dd></div>
+                                <div><dt>status</dt><dd>open to collabs ✦</dd></div>
+                            </dl>
+                            <div class="qr" data-seed="9"></div>
+                            <span class="badge-glare"></span>
+                        </div>
+                    </div>
+                    <p class="badge-hint">drag me · click to flip ↻</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>python</span><i>✦</i><span>R</span><i>✦</i><span>bioinformatics</span><i>✦</i><span>machine learning</span><i>✦</i><span>data analysis</span><i>✦</i><span>SQL</span><i>✦</i><span>linux &amp; git</span><i>✦</i>
+                <span>python</span><i>✦</i><span>R</span><i>✦</i><span>bioinformatics</span><i>✦</i><span>machine learning</span><i>✦</i><span>data analysis</span><i>✦</i><span>SQL</span><i>✦</i><span>linux &amp; git</span><i>✦</i>
             </div>
-            <p class="about-me"> Hi, I'm Ideli Zanesco-Fontes, a bioinformatician who is deeply interested in programming. In addition to bioinformatics I also work as data and Machine Learning analyst. I just love what I do and I am here juto to share a little bit of my passions.
-            </p>
-            <div>
-                <a class = "outreach darkerText">
-                    <i class="fa-solid fa-arrow-right"></i>
-                    <p> Email me</p>
-                </a>
+        </div>
+
+        <!-- 03 · SKILLS (tickets are built from the SKILLS list in script.js) -->
+        <section id="skills" class="skills">
+            <div class="skills-sticky">
+                <div class="skills-head">
+                    <p class="script">now showing</p>
+                    <h2 class="h-section">skills</h2>
+                    <p class="mono-note">keep scrolling to stack the tickets</p>
+                </div>
+                <div class="ticket-stack" id="ticketStack"></div>
+                <div class="skills-counter">
+                    <span id="ticketNow">01</span> / <span id="ticketTotal">01</span>
+                    <span class="film"><span id="ticketBar"></span></span>
+                </div>
             </div>
-            
         </section>
-        <section class="projectContainer">
-            <p class="darkerText headerText"> Latest Projects</p>
-            <div class="projectItem">
-                <div>
-                    <p class="darkerText">Jan 24, 2024</p>
-                    <p>Aiaia</p>
-                </div>
-                <div>
-                    <img src="" alt="Aiaia">
+
+        <!-- 04 · PROJECTS (polaroids are built from the PROJECTS list in script.js) -->
+        <section id="projects" class="projects">
+            <div class="projects-sticky">
+                <div class="vinyl-stage">
+                    <div class="vinyl" id="vinyl">
+                        <div class="vinyl-label">
+                            <span class="lbl-top">IZF RECORDS</span>
+                            <span class="lbl-side">side A</span>
+                            <span class="lbl-stereo">STEREO</span>
+                            <span class="lbl-rpm">33⅓</span>
+                        </div>
+                    </div>
+                    <div class="vinyl-shine"></div>
+                    <div class="rim" id="rim"></div>
                 </div>
 
+                <aside class="now-playing">
+                    <p class="script">side A</p>
+                    <h2 class="h-section">projects</h2>
+                    <div class="np-card" id="npCard">
+                        <span class="tape tape-card"></span>
+                        <p class="np-meta"><span id="npNum">track 01</span> · <span id="npYear"></span></p>
+                        <h3 id="npTitle"></h3>
+                        <p id="npDesc"></p>
+                        <ul class="tags" id="npTags"></ul>
+                        <a id="npLink" class="btn btn-small" target="_blank" rel="noopener">open project ↗</a>
+                    </div>
+                    <ol class="tracklist" id="tracklist"></ol>
+                    <div class="np-controls">
+                        <button type="button" id="prevTrack" aria-label="Previous project">◂◂</button>
+                        <button type="button" id="nextTrack" aria-label="Next project">▸▸</button>
+                    </div>
+                </aside>
             </div>
         </section>
-        </main>
+
+        <!-- 05 · CONTACT -->
+        <section id="contact" class="contact">
+            <div class="tear" data-seed="21"></div>
+            <div class="contact-sheet reveal" data-torn="all" data-seed="33">
+                <h2 class="h-section">ready for<br>your next<br>collab?</h2>
+                <p class="contact-lede">Data that needs a story, a pipeline that needs some love, or a model to build? Let's talk.</p>
+                <dl class="contact-rows">
+                    <!-- TODO: replace with your real email and LinkedIn -->
+                    <div><dt>email</dt><dd><a href="mailto:hello@example.com">hello@example.com</a></dd></div>
+                    <div><dt>github</dt><dd><a href="https://github.com/idyzf" target="_blank" rel="noopener">github.com/idyzf</a></dd></div>
+                    <div><dt>linkedin</dt><dd><a href="#" target="_blank" rel="noopener">linkedin.com/in/…</a></dd></div>
+                </dl>
+            </div>
+            <div class="contact-right reveal">
+                <p class="script big">Let's create<br>something.</p>
+                <p class="arrow">↓</p>
+                <a class="btn btn-light" href="mailto:hello@example.com">say hello</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© <span id="year">2026</span> Ideli Zanesco — made with paper, glue &amp; code</p>
+    </footer>
+
+    <script src="./script.js"></script>
 </body>
 </html>

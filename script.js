@@ -1,0 +1,392 @@
+(() => {
+    'use strict';
+
+    /* ==========================================================
+       ✎ EDIT YOUR CONTENT HERE
+       ========================================================== */
+
+    // themes: cream | blush | brick | pink
+    const SKILLS = [
+        { title: 'Python', sub: 'Scripting, pipelines & data wrangling.', tools: 'pandas · numpy · biopython · scikit-learn', level: 5, glyph: 'Py', icon: 'fa-brands fa-python', theme: 'cream' },
+        { title: 'R', sub: 'Statistics, Bioconductor & beautiful plots.', tools: 'tidyverse · ggplot2 · Bioconductor', level: 4, glyph: 'R', icon: 'fa-solid fa-chart-line', theme: 'blush' },
+        { title: 'Bioinformatics', sub: 'From raw sequences to biological insight.', tools: 'genomics · sequence analysis · pipelines', level: 5, glyph: 'DNA', icon: 'fa-solid fa-dna', theme: 'brick' },
+        { title: 'Machine Learning', sub: 'Models that learn, predict and explain.', tools: 'scikit-learn · feature engineering · evaluation', level: 4, glyph: 'ML', icon: 'fa-solid fa-brain', theme: 'pink' },
+        { title: 'Data Analysis', sub: 'Turning messy tables into clear stories.', tools: 'EDA · statistics · visualization', level: 5, glyph: 'Σ', icon: 'fa-solid fa-magnifying-glass-chart', theme: 'cream' },
+        { title: 'SQL', sub: 'Querying, joining and keeping data tidy.', tools: 'SQL · databases · data modeling', level: 3, glyph: 'SQL', icon: 'fa-solid fa-database', theme: 'blush' },
+        { title: 'Linux & Git', sub: 'Shell, servers and version control.', tools: 'bash · servers · git · GitHub', level: 4, glyph: '$_', icon: 'fa-brands fa-git-alt', theme: 'brick' },
+    ];
+
+    // img: optional screenshot path (e.g. 'assets/aiaia.jpg'); without it a collage cover is drawn
+    const PROJECTS = [
+        { title: 'Aiaia', year: '2024', desc: 'Add a short description of this project — what it does and what you used.', tags: ['python', 'data'], link: 'https://github.com/idyzf', color: '#9B2C1F', glyph: 'Ai' },
+        { title: 'Project two', year: '2024', desc: 'Placeholder — replace with one of your projects.', tags: ['bioinformatics'], link: 'https://github.com/idyzf', color: '#5A1828', glyph: '02' },
+        { title: 'Project three', year: '2023', desc: 'Placeholder — replace with one of your projects.', tags: ['machine learning'], link: 'https://github.com/idyzf', color: '#2C0B13', glyph: '03' },
+        { title: 'Project four', year: '2023', desc: 'Placeholder — replace with one of your projects.', tags: ['R', 'stats'], link: 'https://github.com/idyzf', color: '#B5483A', glyph: '04' },
+        { title: 'Project five', year: '2022', desc: 'Placeholder — replace with one of your projects.', tags: ['SQL'], link: 'https://github.com/idyzf', color: '#7A2333', glyph: '05' },
+        { title: 'Project six', year: '2022', desc: 'Placeholder — replace with one of your projects.', tags: ['data viz'], link: 'https://github.com/idyzf', color: '#9B2C1F', glyph: '06' },
+    ];
+
+    /* ========================================================== */
+
+    const $ = (s, c = document) => c.querySelector(s);
+    const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+    const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const easeOut = t => 1 - Math.pow(1 - t, 3);
+    const pad = n => String(n).padStart(2, '0');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    function rng(seed) {
+        let s = Math.floor(seed) % 2147483647;
+        if (s <= 0) s += 2147483646;
+        return () => (s = s * 16807 % 2147483647, (s - 1) / 2147483646);
+    }
+
+    $('#year').textContent = new Date().getFullYear();
+
+    /* ---------- torn paper edges ---------- */
+    function tear(el, seed) {
+        const r = rng(seed);
+        const pts = [];
+        if (el.dataset.torn === 'all') {
+            const j = () => (r() * 1.4).toFixed(2);
+            for (let x = 0; x < 100; x += 2 + r() * 4) pts.push(`${x.toFixed(1)}% ${j()}%`);
+            for (let y = 0; y < 100; y += 2 + r() * 4) pts.push(`${(100 - r() * 1.4).toFixed(2)}% ${y.toFixed(1)}%`);
+            for (let x = 100; x > 0; x -= 2 + r() * 4) pts.push(`${x.toFixed(1)}% ${(100 - r() * 1.4).toFixed(2)}%`);
+            for (let y = 100; y > 0; y -= 2 + r() * 4) pts.push(`${j()}% ${y.toFixed(1)}%`);
+        } else {
+            for (let x = 0; x <= 100; x += .7 + r() * 2.2) pts.push(`${x.toFixed(2)}% ${(18 + r() * 62).toFixed(1)}%`);
+            pts.push('100% 40%', '100% 100%', '0% 100%');
+        }
+        el.style.clipPath = `polygon(${pts.join(',')})`;
+    }
+    $$('.tear, [data-torn]').forEach((el, i) => tear(el, +el.dataset.seed || (i + 1) * 97));
+
+    /* ---------- barcodes & qr ---------- */
+    function barcode(el, seed, vertical) {
+        const r = rng(seed);
+        let html = '';
+        for (let i = 0; i < 46; i++) {
+            const w = 1 + Math.floor(r() * 3), g = 1 + Math.floor(r() * 3);
+            html += vertical
+                ? `<i style="height:${w}px;margin-bottom:${g}px"></i>`
+                : `<i style="width:${w}px;margin-right:${g}px"></i>`;
+        }
+        el.innerHTML = html;
+    }
+    $$('.badge .barcode').forEach(el => barcode(el, +el.dataset.seed || 3, false));
+
+    $$('.qr').forEach(el => {
+        const r = rng(+el.dataset.seed || 9);
+        let html = '';
+        for (let y = 0; y < 9; y++) for (let x = 0; x < 9; x++) {
+            const corner = (x < 3 && y < 3) || (x > 5 && y < 3) || (x < 3 && y > 5);
+            const ring = corner && !((x % 6 === 1) && (y % 6 === 1));
+            const on = corner ? ring || ((x % 6 === 1) && (y % 6 === 1)) : r() > .5;
+            html += `<i class="${on ? '' : 'o'}"></i>`;
+        }
+        el.innerHTML = html;
+    });
+
+    /* ---------- cut-out letters on the name ---------- */
+    const chips = [['#5A1828', '#F4ECE2'], ['#EBCFCB', '#9B2C1F'], ['#FBF7F1', '#9B2C1F'], ['#2C0B13', '#EBCFCB'], ['#9B2C1F', '#F3D6D3']];
+    $$('[data-split]').forEach(line => {
+        const text = line.textContent.trim();
+        line.textContent = '';
+        [...text].forEach(c => {
+            const s = document.createElement('span');
+            s.className = 'ch';
+            s.textContent = c;
+            s.setAttribute('aria-hidden', 'true');
+            s.addEventListener('pointerenter', () => {
+                const [bg, ink] = chips[Math.floor(Math.random() * chips.length)];
+                s.style.setProperty('--chip', bg);
+                s.style.setProperty('--chip-ink', ink);
+                s.style.setProperty('--rot', `${(Math.random() * 18 - 9).toFixed(1)}deg`);
+                s.style.setProperty('--ty', `${(-Math.random() * 14).toFixed(1)}px`);
+                s.classList.add('cut');
+                clearTimeout(s._t);
+                s._t = setTimeout(() => s.classList.remove('cut'), 1800);
+            });
+            line.appendChild(s);
+        });
+    });
+
+    /* ---------- reveal on scroll ---------- */
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: .15 });
+    $$('.reveal').forEach(el => io.observe(el));
+
+    /* ==========================================================
+       lanyard + 3D badge
+       ========================================================== */
+    const badge = (() => {
+        const zone = $('.lanyard-zone'), path = $('#strapPath');
+        const A = $('.photo-anchor'), B = $('.badge-anchor');
+        const card = $('.badge'), stage = $('.badge-stage');
+        const s = { x: 0, y: 0, vx: 0, vy: 0, rz: 0, rx: 0, ry: 0, tx: 0, ty: 0, flip: 0, flipT: 0, drag: false, moved: false, px: 0, py: 0, sx: 0, sy: 0 };
+
+        const flip = () => { s.flipT = s.flipT ? 0 : 180; s.vx += 5; };
+
+        card.addEventListener('pointerdown', e => {
+            s.drag = true; s.moved = false;
+            s.px = e.clientX; s.py = e.clientY; s.sx = s.x; s.sy = s.y;
+            card.setPointerCapture(e.pointerId);
+            card.classList.add('grabbing');
+            start();
+        });
+        card.addEventListener('pointermove', e => {
+            if (!s.drag) return;
+            const dx = e.clientX - s.px, dy = e.clientY - s.py;
+            if (Math.abs(dx) + Math.abs(dy) > 6) s.moved = true;
+            const nx = clamp(s.sx + dx, -170, 170), ny = clamp(s.sy + dy, -30, 140);
+            s.vx = nx - s.x; s.vy = ny - s.y; s.x = nx; s.y = ny;
+        });
+        const release = flipIfClick => {
+            if (!s.drag) return;
+            s.drag = false;
+            card.classList.remove('grabbing');
+            if (flipIfClick && !s.moved) flip();
+        };
+        card.addEventListener('pointerup', () => release(true));
+        card.addEventListener('pointercancel', () => release(false));
+        card.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); start(); }
+        });
+
+        stage.addEventListener('pointermove', e => {
+            if (s.drag || e.pointerType === 'touch') return;
+            const r = card.getBoundingClientRect();
+            const mx = clamp((e.clientX - r.left) / r.width, -.5, 1.5);
+            const my = clamp((e.clientY - r.top) / r.height, -.5, 1.5);
+            s.ty = clamp((mx - .5) * 40, -26, 26);
+            s.tx = clamp(-(my - .5) * 28, -18, 18);
+            card.style.setProperty('--gx', `${(mx * 100).toFixed(1)}%`);
+            card.style.setProperty('--gy', `${(my * 100).toFixed(1)}%`);
+            s.vx += clamp(e.movementX || 0, -30, 30) * .012;
+        });
+        stage.addEventListener('pointerleave', () => { s.tx = 0; s.ty = 0; });
+
+        let lastY = scrollY;
+        addEventListener('scroll', () => {
+            const d = clamp(scrollY - lastY, -60, 60);
+            lastY = scrollY;
+            if (!reduce) { s.vx += d * .02; s.vy += Math.abs(d) * .01; }
+        }, { passive: true });
+
+        function drawStrap() {
+            const z = zone.getBoundingClientRect(), a = A.getBoundingClientRect(), b = B.getBoundingClientRect();
+            const ax = a.left - z.left, ay = a.top - z.top - 3;
+            const bx = b.left - z.left + s.x, by = b.top - z.top + s.y;
+            const d = Math.max(60, by - ay);
+            path.setAttribute('d', `M${ax.toFixed(1)},${ay.toFixed(1)} C${ax.toFixed(1)},${(ay + d * .5).toFixed(1)} ${bx.toFixed(1)},${(by - d * .45).toFixed(1)} ${bx.toFixed(1)},${by.toFixed(1)}`);
+        }
+
+        let visible = true, raf = 0;
+        function tick(t) {
+            raf = 0;
+            if (!s.drag) {
+                s.vx += -s.x * .045;
+                s.vy += -s.y * .06;
+                if (!reduce) s.vx += Math.sin(t / 1100) * .03;
+                s.vx *= .9; s.vy *= .86;
+                s.x += s.vx; s.y += s.vy;
+            }
+            s.rz = lerp(s.rz, clamp(s.vx * 2.2 - s.x * .04, -35, 35), .25);
+            s.rx = lerp(s.rx, s.tx + clamp(s.vy * .8, -20, 20), .1);
+            s.ry = lerp(s.ry, s.ty, .1);
+            s.flip = lerp(s.flip, s.flipT, .12);
+            card.style.transform = `translate3d(${s.x.toFixed(2)}px,${s.y.toFixed(2)}px,0) rotateZ(${s.rz.toFixed(2)}deg) rotateX(${s.rx.toFixed(2)}deg) rotateY(${(s.ry + s.flip).toFixed(2)}deg)`;
+            drawStrap();
+            if (visible) start();
+        }
+        function start() { if (!raf) raf = requestAnimationFrame(tick); }
+
+        new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) start(); }).observe(zone);
+        addEventListener('resize', drawStrap);
+        addEventListener('load', drawStrap);
+        start();
+    })();
+
+    /* ==========================================================
+       skills · cinema tickets stacking on scroll
+       ========================================================== */
+    const updateTickets = (() => {
+        const sec = $('#skills'), stack = $('#ticketStack');
+        const r = rng(11);
+        const rows = 'ABCDEFGHJK';
+        const tickets = SKILLS.map((sk, i) => {
+            const el = document.createElement('article');
+            el.className = 'ticket';
+            el.dataset.theme = sk.theme || 'cream';
+            el.innerHTML = `
+                <div class="ticket-body">
+                    <div class="t-main">
+                        <div class="t-top"><span>IZF cinema club</span><span>admit one</span></div>
+                        <h3 class="t-title">${esc(sk.title)}</h3>
+                        <p class="t-sub">${esc(sk.sub)}</p>
+                        <div class="t-meta">
+                            <div><span>screen</span><b>${pad(i + 1)}</b></div>
+                            <div><span>row</span><b>${rows[i % rows.length]}</b></div>
+                            <div><span>level</span><b>${'●'.repeat(sk.level)}${'○'.repeat(5 - sk.level)}</b></div>
+                        </div>
+                        <p class="t-tools">${esc(sk.tools)}</p>
+                    </div>
+                    <div class="t-art" aria-hidden="true">
+                        <span class="t-strip">now showing</span>
+                        <i class="${esc(sk.icon)} t-icon"></i>
+                        <span class="t-glyph">${esc(sk.glyph)}</span>
+                    </div>
+                    <div class="t-stub" aria-hidden="true">
+                        <span class="t-stub-num">${pad(i + 1)}</span>
+                        <div class="barcode v"></div>
+                        <span class="t-serial">151 1500 01${i}5 1515</span>
+                    </div>
+                    <span class="ticket-shade"></span>
+                </div>`;
+            stack.appendChild(el);
+            barcode($('.barcode', el), 100 + i * 13, true);
+            return { el, base: r() * 7 - 3.5, swing: i % 2 ? 9 : -9 };
+        });
+
+        const n = tickets.length;
+        const now = $('#ticketNow'), bar = $('#ticketBar');
+        $('#ticketTotal').textContent = pad(n);
+        sec.style.height = `calc(100svh + ${(n - 1) * 70}vh)`;
+
+        return () => {
+            const rect = sec.getBoundingClientRect();
+            const total = sec.offsetHeight - innerHeight;
+            if (rect.bottom < -50 || rect.top > innerHeight + 50) return;
+            const p = clamp(-rect.top / total, 0, 1);
+            const s = clamp(p * (n - 1) * 1.08, 0, n - 1);
+            tickets.forEach((t, i) => {
+                const enter = i === 0 ? 1 : clamp(s - (i - 1), 0, 1);
+                const e = easeOut(enter);
+                const depth = Math.min(Math.max(0, s - i), 4);
+                const y = (1 - e) * innerHeight * 1.05 - depth * 16;
+                const rot = t.base + (1 - e) * t.swing;
+                const sc = 1 - depth * .04;
+                t.el.style.transform = `translate(-50%,-50%) translate3d(0,${y.toFixed(1)}px,0) rotate(${rot.toFixed(2)}deg) scale(${sc.toFixed(3)})`;
+                t.el.style.setProperty('--shade', (depth * .13).toFixed(3));
+                t.el.style.visibility = enter <= 0 || s - i > 5 ? 'hidden' : 'visible';
+            });
+            now.textContent = pad(Math.round(s) + 1);
+            bar.style.width = `${(s / Math.max(1, n - 1)) * 100}%`;
+        };
+    })();
+
+    /* ==========================================================
+       projects · spinning vinyl + polaroids
+       ========================================================== */
+    const updateVinyl = (() => {
+        const sec = $('#projects'), rim = $('#rim'), disc = $('#vinyl');
+        const STEP = 45;
+        const n = PROJECTS.length;
+        const r = rng(42);
+        const card = $('#npCard'), list = $('#tracklist');
+        let theta = 0, spin = 0, active = -1;
+
+        const polaroids = PROJECTS.map((p, i) => {
+            const el = document.createElement('a');
+            el.className = 'polaroid';
+            el.href = p.link || '#';
+            el.target = '_blank';
+            el.rel = 'noopener';
+            el.setAttribute('aria-label', p.title);
+            el.style.setProperty('--a', `${i * STEP}deg`);
+            el.style.setProperty('--tilt', `${(r() * 8 - 4).toFixed(1)}deg`);
+            el.innerHTML = `
+                <div class="pol-inner">
+                    <div class="pol-photo" style="--pc:${esc(p.color || '#9B2C1F')}">
+                        ${p.img ? `<img src="${esc(p.img)}" alt="">` : `<span class="pol-glyph">${esc(p.glyph || p.title[0])}</span>`}
+                    </div>
+                    <p class="pol-cap">${esc(p.title)}</p>
+                </div>`;
+            // first click brings a polaroid to the front, second click opens it
+            el.addEventListener('click', e => { if (i !== active) { e.preventDefault(); goTo(i); } });
+            rim.appendChild(el);
+
+            const li = document.createElement('li');
+            li.innerHTML = `<button type="button"><span>${pad(i + 1)}</span><span>${esc(p.title)}</span></button>`;
+            li.firstElementChild.addEventListener('click', () => goTo(i));
+            list.appendChild(li);
+            return el;
+        });
+
+        sec.style.height = `calc(100svh + ${(n - 1) * 55}vh)`;
+
+        function goTo(i) {
+            const total = sec.offsetHeight - innerHeight;
+            const top = sec.getBoundingClientRect().top + scrollY;
+            scrollTo({ top: top + (n > 1 ? i / (n - 1) : 0) * total + 2, behavior: reduce ? 'auto' : 'smooth' });
+        }
+        $('#prevTrack').addEventListener('click', () => goTo(Math.max(0, active - 1)));
+        $('#nextTrack').addEventListener('click', () => goTo(Math.min(n - 1, active + 1)));
+
+        function setActive(i) {
+            if (i === active) return;
+            const first = active === -1;
+            active = i;
+            const p = PROJECTS[i];
+            polaroids.forEach((el, k) => el.classList.toggle('is-active', k === i));
+            [...list.children].forEach((li, k) => li.classList.toggle('active', k === i));
+            $('#npNum').textContent = `track ${pad(i + 1)}`;
+            $('#npYear').textContent = p.year || '';
+            $('#npTitle').textContent = p.title;
+            $('#npDesc').textContent = p.desc || '';
+            $('#npTags').innerHTML = (p.tags || []).map(t => `<li>${esc(t)}</li>`).join('');
+            const link = $('#npLink');
+            link.href = p.link || '#';
+            link.style.display = p.link ? '' : 'none';
+            if (!first && !reduce) { card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap'); }
+        }
+
+        function paint() {
+            rim.style.setProperty('--theta', `${theta}deg`);
+            rim.style.transform = `rotate(${theta}deg)`;
+            disc.style.transform = `rotate(${theta + spin}deg)`;
+        }
+
+        // the record keeps spinning slowly while the section is on screen
+        let visible = false, last = 0;
+        function idle(t) {
+            if (!visible) return;
+            if (last) spin += (t - last) * .018;
+            last = t;
+            paint();
+            requestAnimationFrame(idle);
+        }
+        new IntersectionObserver(([en]) => {
+            visible = en.isIntersecting;
+            last = 0;
+            if (visible && !reduce) requestAnimationFrame(idle);
+        }).observe(sec);
+
+        setActive(0);
+
+        return () => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.bottom < -50 || rect.top > innerHeight + 50) return;
+            const total = sec.offsetHeight - innerHeight;
+            const p = clamp(-rect.top / total, 0, 1);
+            theta = -p * (n - 1) * STEP;
+            setActive(clamp(Math.round(-theta / STEP), 0, n - 1));
+            paint();
+        };
+    })();
+
+    /* ---------- one scroll loop ---------- */
+    let ticking = false;
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { ticking = false; updateTickets(); updateVinyl(); });
+    }
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll);
+    updateTickets();
+    updateVinyl();
+})();
