@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gene Expression by Neural-Network Analysis — Ideli Zanesco</title>
+    <meta name="description" content="An R pipeline using WGCNA to find co-expressed gene modules and link them to traits.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./project.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <a href="../index.html" class="logo">IZ</a>
+        <a href="../index.html#projects" class="pp-back">← back to the record</a>
+    </header>
+
+    <main>
+
+        <section class="pp-hero">
+            <div class="pp-hero-copy">
+                <p class="pp-kicker">side A · track 05</p>
+                <h1 class="pp-title pp-title--long">Gene Expression by Neural-Network Analysis</h1>
+                <p class="pp-tagline">finding genes that move together</p>
+                <p class="pp-lede">An R pipeline that builds gene co-expression networks from sequencing data to uncover regulatory patterns, highlight functional gene modules and connect them to phenotypes.</p>
+                <ul class="tags"><li>R</li><li>WGCNA</li><li>NGS</li></ul>
+                <div class="pp-actions"><a class="btn" href="https://github.com/idyzf/WGCNA/blob/main/WGCNA%20tentativa%202.R" target="_blank" rel="noopener">see the code ↗</a><a class="hand-link" href="../index.html#projects">← back to the record</a></div>
+            </div>
+            <figure class="pp-polaroid">
+                <span class="tape"></span>
+                <div class="pp-cover" style="--pc:#5A1828"><span class="pp-glyph">NN</span><img src="../Project2.png" alt="Screenshot of Gene Expression by Neural-Network Analysis"></div>
+                <figcaption>modules ✶</figcaption>
+            </figure>
+            <span class="pp-stamp" aria-hidden="true">track<br>05<br>side A</span>
+        </section>
+
+        <section class="pp-body">
+            <div class="pp-col">
+                <h2 class="h-section">what it is</h2>
+                <p>Instead of looking at genes one at a time, this analysis groups genes whose expression rises and falls together into modules — then asks which of those modules track the traits you care about.</p><p>It uses WGCNA (weighted gene co-expression network analysis), a standard approach for finding structure in large expression datasets.</p>
+                <h2 class="h-section">how it works</h2>
+                <ol class="pp-steps"><li><b>Clean the samples</b><span>Hierarchical clustering spots outlier samples so they can be removed before building the network.</span></li><li><b>Pick a power</b><span>A soft-thresholding power is chosen from the scale-free topology fit.</span></li><li><b>Build modules</b><span>The network is built (unsigned TOM, power 9) and cut into colour-coded modules of co-expressed genes.</span></li><li><b>Relate to traits</b><span>Module eigengenes are correlated with sample traits, with p-values, to highlight the modules linked to the phenotype.</span></li></ol>
+            </div>
+            <aside class="pp-side">
+                <div class="pp-note">
+                    <span class="tape"></span>
+                    <p class="script">built with</p>
+                    <ul><li>R · WGCNA</li><li>dplyr · openxlsx</li><li>NGS expression data</li></ul>
+                </div>
+                <div class="pp-note pp-note--paper">
+                    <span class="tape"></span>
+                    <p class="script">good to know</p>
+                    <ul><li>Modules are named by colour — a WGCNA convention that makes plots easy to read.</li><li>Each module is summarised by its eigengene, its first principal component.</li><li>Trait correlations point to candidate genes and pathways to follow up.</li></ul>
+                </div>
+            </aside>
+        </section>
+
+        <nav class="pp-next" aria-label="More projects">
+            <a href="digital-pathology.html"><small>← track 04</small><strong>Machine Learning applied to Digital Pathology</strong></a>
+            <a href="sample-sheet.html"><small>track 06 →</small><strong>Sample Sheet Assistant</strong></a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>© 2026 Ideli Zanesco — made with paper, glue &amp; code</p>
+    </footer>
+</body>
+</html>

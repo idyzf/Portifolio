@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agents — Ideli Zanesco</title>
+    <meta name="description" content="A Discord bot powered by a self-hosted Qwen model running on Ollama.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./project.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <a href="../index.html" class="logo">IZ</a>
+        <a href="../index.html#projects" class="pp-back">← back to the record</a>
+    </header>
+
+    <main>
+
+        <section class="pp-hero">
+            <div class="pp-hero-copy">
+                <p class="pp-kicker">side A · track 02</p>
+                <h1 class="pp-title">AI Agents</h1>
+                <p class="pp-tagline">a local LLM that lives in Discord</p>
+                <p class="pp-lede">A Discord bot backed by a self-hosted language model: an open-weight Qwen model served by Ollama, wrapped in a Qwen-Agent assistant and shipped as a Docker Compose service.</p>
+                <ul class="tags"><li>Python</li><li>Qwen-Agent</li><li>Ollama</li><li>Discord</li><li>Docker</li></ul>
+                <div class="pp-actions"><a class="btn" href="https://github.com/idyzf/AI-Agents" target="_blank" rel="noopener">see the code ↗</a><a class="hand-link" href="../index.html#projects">← back to the record</a></div>
+            </div>
+            <figure class="pp-polaroid">
+                <span class="tape"></span>
+                <div class="pp-cover" style="--pc:#2C0B13"><span class="pp-glyph">AI</span></div>
+                <figcaption>hello, bot ✶</figcaption>
+            </figure>
+            <span class="pp-stamp" aria-hidden="true">track<br>02<br>side A</span>
+        </section>
+
+        <section class="pp-body">
+            <div class="pp-col">
+                <h2 class="h-section">what it is</h2>
+                <p>The idea is a personal assistant you can talk to right inside Discord, without sending conversations to a paid API. The model runs locally through Ollama's OpenAI-compatible endpoint, so swapping models is a single environment variable.</p><p>It's also the base for something bigger: the Qwen-Agent framework supports tools and MCP servers, so the same bot can grow into an agent that acts, not only answers.</p>
+                <h2 class="h-section">how it works</h2>
+                <ol class="pp-steps"><li><b>Listen</b><span>In direct messages the bot always answers; in servers it only replies when someone @mentions it.</span></li><li><b>Remember</b><span>Each channel keeps a short rolling history of the last 20 messages, so replies have context.</span></li><li><b>Think</b><span>The history goes to a Qwen-Agent <em>Assistant</em> running <code>qwen2.5:7b-instruct</code> on Ollama.</span></li><li><b>Reply</b><span>The answer is split into chunks under Discord's 2,000-character limit and posted back to the channel.</span></li></ol>
+            </div>
+            <aside class="pp-side">
+                <div class="pp-note">
+                    <span class="tape"></span>
+                    <p class="script">built with</p>
+                    <ul><li>Python</li><li>discord.py</li><li>Qwen-Agent</li><li>Ollama · qwen2.5:7b-instruct</li><li>Docker &amp; Docker Compose</li></ul>
+                </div>
+                <div class="pp-note pp-note--paper">
+                    <span class="tape"></span>
+                    <p class="script">good to know</p>
+                    <ul><li>The model is set with <code>MODEL_NAME</code> — any Ollama model works.</li><li>Model weights live in a Docker volume, so they survive rebuilds.</li><li>Memory is in-process for now; a persistent store is on the list.</li><li>Next up: tools and MCP servers (the code interpreter needs Docker-in-Docker).</li></ul>
+                </div>
+            </aside>
+        </section>
+
+        <nav class="pp-next" aria-label="More projects">
+            <a href="https://idyzf.github.io/GS_Survey/"><small>← track 01</small><strong>Genomics Software Survey</strong></a>
+            <a href="atlaslife.html"><small>track 03 →</small><strong>AtlasLife</strong></a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>© 2026 Ideli Zanesco — made with paper, glue &amp; code</p>
+    </footer>
+</body>
+</html>

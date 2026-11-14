@@ -17,27 +17,47 @@
     ];
 
     // img: optional screenshot path; without it a collage cover is drawn (color + glyph)
-    // link: leave out when the code isn't public; note: optional small line shown instead of the link
+    // link: a project page (projects/…html) or an external site (opens in a new tab)
+    // linkLabel: optional button text; note: optional small line shown when there's no link
     const PROJECTS = [
+        {
+            title: 'Genomics Software Survey', short: 'Genomic Survey',
+            desc: 'An interactive, anonymous survey platform on genomics software engineering — with team scoring, a 3D DNA visualisation, a live ranking and automatic notifications.',
+            tags: ['React', 'Three.js', 'Framer Motion'], link: 'https://idyzf.github.io/GS_Survey/', linkLabel: 'visit the site ↗',
+            color: '#9B2C1F', glyph: 'GS',
+        },
+        {
+            title: 'AI Agents', short: 'AI Agents',
+            desc: 'A Discord bot backed by a self-hosted language model: a Qwen model served by Ollama, wrapped in a Qwen-Agent assistant and shipped with Docker.',
+            tags: ['Python', 'Qwen-Agent', 'Ollama', 'Docker'], link: 'projects/ai-agents.html',
+            color: '#2C0B13', glyph: 'AI',
+        },
+        {
+            title: 'AtlasLife', short: 'AtlasLife',
+            desc: 'An interactive genomics website: scroll to turn a 3D DNA helix and stop at short lessons on how DNA is built, copied, read and changed.',
+            tags: ['JavaScript', 'Three.js', 'Genomics'], link: 'projects/atlaslife.html',
+            color: '#5A1828', glyph: 'DNA',
+        },
         {
             title: 'Machine Learning applied to Digital Pathology', short: 'Digital Pathology ML',
             desc: 'A Python and R-based machine learning pipeline that segments cells in digital pathology images and predicts quantitative and qualitative immunohistochemistry (IHC) results.',
-            tags: ['Reticulate', 'Python', 'EBImage'], link: 'https://github.com/idyzf/Image-Analysis-reticulate',
+            tags: ['Reticulate', 'Python', 'EBImage'], link: 'projects/digital-pathology.html',
             img: 'Project1.png', color: '#9B2C1F', glyph: 'ML',
         },
         {
             title: 'Gene Expression by Neural-Network Analysis', short: 'Gene Expression NN',
-            desc: 'An R pipeline that integrates neural network models with gene co-expression analysis to uncover regulatory patterns, highlight functional gene modules, and improve prediction of expression-driven phenotypes.',
-            tags: ['R', 'WGCNA', 'NGS'], link: 'https://github.com/idyzf/WGCNA/blob/main/WGCNA%20tentativa%202.R',
+            desc: 'An R pipeline that builds gene co-expression networks (WGCNA) to uncover regulatory patterns, highlight functional gene modules and connect them to phenotypes.',
+            tags: ['R', 'WGCNA', 'NGS'], link: 'projects/gene-expression.html',
             img: 'Project2.png', color: '#5A1828', glyph: 'NN',
         },
         {
             title: 'Sample Sheet Assistant', short: 'Sample Sheet Assistant',
             desc: 'A full-stack web application that automates the creation of NGS sequencing sample sheets, with real-time guidance on index orientation, color balance and sample configuration for error-free sequencing runs.',
-            tags: ['Python', 'Django', 'Docker'], note: 'Not an official product — code not available',
+            tags: ['Python', 'Django', 'Docker'], link: 'projects/sample-sheet.html',
             img: 'Project3.png', color: '#2C0B13', glyph: 'SS',
         },
     ];
+    const isExternal = url => /^https?:\/\//.test(url || '');
 
     /* ========================================================== */
 
@@ -331,8 +351,10 @@
         const polaroids = PROJECTS.map((p, i) => {
             const el = document.createElement('a');
             el.className = 'polaroid';
-            if (p.link) { el.href = p.link; el.target = '_blank'; el.rel = 'noopener'; }
-            else { el.tabIndex = 0; el.setAttribute('role', 'button'); }
+            if (p.link) {
+                el.href = p.link;
+                if (isExternal(p.link)) { el.target = '_blank'; el.rel = 'noopener'; }
+            } else { el.tabIndex = 0; el.setAttribute('role', 'button'); }
             el.setAttribute('aria-label', p.title);
             el.style.setProperty('--a', `${i * STEP}deg`);
             el.style.setProperty('--tilt', `${(r() * 8 - 4).toFixed(1)}deg`);
@@ -378,8 +400,11 @@
             $('#npDesc').textContent = p.desc || '';
             $('#npTags').innerHTML = (p.tags || []).map(t => `<li>${esc(t)}</li>`).join('');
             const link = $('#npLink'), note = $('#npNote');
+            const ext = isExternal(p.link);
             link.href = p.link || '#';
             link.style.display = p.link ? '' : 'none';
+            link.textContent = p.linkLabel || (ext ? 'open project ↗' : 'read more →');
+            if (ext) { link.target = '_blank'; link.rel = 'noopener'; } else { link.removeAttribute('target'); link.removeAttribute('rel'); }
             note.textContent = p.link ? '' : (p.note || '');
             if (!first && !reduce) { card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap'); }
         }

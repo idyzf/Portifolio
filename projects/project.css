@@ -1,0 +1,225 @@
+/* ==========================================================
+   project pages — builds on ../styles.css (palette, fonts, topbar, btn, tape)
+   ========================================================== */
+
+.pp-back {
+    font-family: var(--mono);
+    font-size: .7rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--wine);
+    background: var(--paper);
+    padding: .75em 1.2em;
+    border-radius: 999px;
+    box-shadow: 0 6px 18px rgba(60, 10, 20, .14);
+    transition: background .2s, color .2s;
+}
+.pp-back:hover { background: var(--brick); color: var(--cream); }
+
+/* ---------- hero ---------- */
+
+.pp-hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+    align-items: center;
+    gap: 5vw;
+    min-height: 88svh;
+    padding: 130px var(--gutter) 110px;
+    background: var(--cream);
+}
+
+.pp-hero-copy { position: relative; z-index: 1; }
+.pp-kicker { font-family: var(--mono); font-size: .75rem; letter-spacing: .25em; text-transform: uppercase; color: var(--wine); margin-bottom: 1.2rem; }
+.pp-title {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-variation-settings: "opsz" 144;
+    font-size: clamp(3rem, 7.5vw, 6.8rem);
+    line-height: .88;
+    letter-spacing: -.04em;
+    color: var(--brick);
+}
+.pp-tagline { font-family: var(--script); font-size: clamp(2rem, 3.6vw, 3rem); color: var(--wine); transform: rotate(-3deg); margin: .3rem 0 1.4rem .2em; }
+.pp-lede { font-size: clamp(1.15rem, 1.6vw, 1.45rem); line-height: 1.6; max-width: 46ch; }
+.pp-hero .tags { margin: 1.6rem 0 2rem; }
+.pp-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 2rem; }
+.hand-link { font-family: var(--hand); font-size: 1.6rem; color: var(--brick); text-decoration: none; transform: rotate(-3deg); }
+.hand-link:hover { text-decoration: underline wavy; }
+
+.pp-polaroid {
+    position: relative;
+    justify-self: center;
+    width: min(400px, 34vw);
+    padding: 14px 14px 62px;
+    background: var(--paper);
+    box-shadow: 0 22px 44px rgba(60, 10, 20, .25), 0 2px 4px rgba(0, 0, 0, .1);
+    transform: rotate(3deg);
+}
+.pp-polaroid .tape { top: -14px; left: 50%; margin-left: -55px; transform: rotate(-4deg); }
+.pp-cover {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: radial-gradient(rgba(255, 255, 255, .16) 1.4px, transparent 1.9px) 0 0 / 9px 9px, var(--pc, var(--brick));
+}
+.pp-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: sepia(.1) saturate(.92); }
+.pp-glyph {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(4rem, 9vw, 8rem);
+    letter-spacing: -.05em;
+    color: var(--pink);
+}
+.pp-polaroid figcaption { position: absolute; left: 20px; bottom: 14px; font-family: var(--hand); font-size: 1.7rem; color: var(--wine); transform: rotate(-2deg); }
+
+.pp-stamp {
+    position: absolute;
+    right: 8%;
+    bottom: 9%;
+    display: grid;
+    place-content: center;
+    width: 118px;
+    height: 118px;
+    border-radius: 50%;
+    border: 3px double var(--brick);
+    color: var(--brick);
+    font-family: var(--mono);
+    font-size: .66rem;
+    letter-spacing: .18em;
+    line-height: 1.5;
+    text-transform: uppercase;
+    text-align: center;
+    transform: rotate(-14deg);
+    opacity: .85;
+}
+
+/* ---------- body ---------- */
+
+.pp-body {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, .8fr);
+    gap: 6vw;
+    padding: 110px var(--gutter) 130px;
+    background: var(--blush);
+}
+.pp-body .h-section { font-size: clamp(2.6rem, 5vw, 4.2rem); margin-bottom: 1.6rem; }
+.pp-body .h-section:not(:first-child) { margin-top: 4rem; }
+.pp-col > p { font-size: clamp(1.1rem, 1.4vw, 1.3rem); line-height: 1.7; max-width: 60ch; margin-bottom: 1.1rem; }
+
+.pp-steps { list-style: none; counter-reset: step; display: grid; gap: 18px; }
+.pp-steps li {
+    counter-increment: step;
+    position: relative;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 6px 18px;
+    padding: 20px 24px;
+    background: var(--paper);
+    box-shadow: 0 10px 22px rgba(60, 10, 20, .12);
+}
+.pp-steps li:nth-child(odd) { transform: rotate(-.6deg); }
+.pp-steps li:nth-child(even) { transform: rotate(.5deg); }
+.pp-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    grid-row: span 2;
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--brick);
+}
+.pp-steps b { font-family: var(--serif); font-size: 1.3rem; color: var(--wine); }
+.pp-steps span { font-size: 1.05rem; line-height: 1.55; }
+
+.pp-side { display: grid; gap: 34px; align-content: start; }
+.pp-note {
+    position: relative;
+    padding: 30px 30px 28px;
+    background: var(--brick);
+    color: var(--cream);
+    box-shadow: 0 16px 30px rgba(60, 10, 20, .25);
+    transform: rotate(-1.2deg);
+}
+.pp-note .tape { top: -14px; left: 50%; margin-left: -55px; transform: rotate(3deg); }
+.pp-note .script { font-size: 2.2rem; color: var(--pink); margin-bottom: .8rem; }
+.pp-note ul { list-style: none; display: grid; gap: .7rem; }
+.pp-note li { font-family: var(--mono); font-size: .82rem; letter-spacing: .06em; line-height: 1.5; padding-left: 1.6em; position: relative; }
+.pp-note li::before { content: "✦"; position: absolute; left: 0; color: var(--pink); }
+.pp-note--paper { background: var(--paper); color: var(--ink); transform: rotate(1deg); }
+.pp-note--paper .script { color: var(--brick); }
+.pp-note--paper li::before { color: var(--brick); }
+
+/* ---------- next / prev ---------- */
+
+.pp-next {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--cherry);
+}
+.pp-next a {
+    display: block;
+    padding: 42px var(--gutter);
+    background: var(--wine);
+    color: var(--cream);
+    text-decoration: none;
+    transition: background .25s;
+}
+.pp-next a:hover { background: var(--brick); }
+.pp-next a:last-child { text-align: right; }
+.pp-next small { display: block; font-family: var(--mono); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--pink); margin-bottom: .5rem; }
+.pp-next strong { font-family: var(--serif); font-size: clamp(1.4rem, 2.6vw, 2.2rem); line-height: 1.05; }
+
+/* ---------- "on the works" ---------- */
+
+.pp-works { min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 120px var(--gutter); background: var(--cream); position: relative; overflow: hidden; }
+.pp-works .pp-title { font-size: clamp(3.6rem, 11vw, 9rem); }
+.pp-works .pp-lede { margin: 1.4rem auto 2.4rem; }
+.pp-works .pp-actions { justify-content: center; }
+.caution {
+    position: absolute;
+    left: -5%;
+    right: -5%;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: var(--mono);
+    font-size: .78rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: repeating-linear-gradient(-45deg, var(--brick) 0 22px, var(--wine) 22px 44px);
+    box-shadow: 0 8px 18px rgba(44, 11, 19, .25);
+}
+.caution span { background: var(--wine); padding: .3em .8em; }
+.caution--top { top: 8%; transform: rotate(-4deg); }
+.caution--bottom { bottom: 12%; transform: rotate(3deg); }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+    .pp-hero { grid-template-columns: 1fr; padding-top: 110px; min-height: 0; }
+    .pp-polaroid { width: min(320px, 76vw); }
+    .pp-stamp { display: none; }
+    .pp-body { grid-template-columns: 1fr; gap: 50px; padding-top: 80px; }
+    .pp-next { grid-template-columns: 1fr; }
+    .pp-next a:last-child { text-align: left; }
+}
+@media (max-width: 520px) {
+    .pp-steps li { grid-template-columns: 1fr; padding: 18px; }
+    .pp-steps li::before { grid-row: auto; font-size: 1.8rem; }
+    .caution { font-size: .62rem; height: 38px; }
+}
+
+.pp-title--long { font-size: clamp(2.4rem, 4.6vw, 4.4rem); line-height: .95; }

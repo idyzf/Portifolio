@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtlasLife — Ideli Zanesco</title>
+    <meta name="description" content="An interactive genomics website: a 3D DNA helix that turns as you scroll, with short lessons along the way.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./project.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <a href="../index.html" class="logo">IZ</a>
+        <a href="../index.html#projects" class="pp-back">← back to the record</a>
+    </header>
+
+    <main>
+
+        <section class="pp-hero">
+            <div class="pp-hero-copy">
+                <p class="pp-kicker">side A · track 03</p>
+                <h1 class="pp-title">AtlasLife</h1>
+                <p class="pp-tagline">a guided tour of DNA</p>
+                <p class="pp-lede">An interactive genomics website. Scroll to turn a 3D double helix and stop at short lessons on how DNA is built, copied, read and changed.</p>
+                <ul class="tags"><li>JavaScript</li><li>Three.js</li><li>HTML</li><li>CSS</li><li>Genomics</li></ul>
+                <div class="pp-actions"><a class="btn" href="https://github.com/idyzf/AtlasLife" target="_blank" rel="noopener">see the code ↗</a><a class="hand-link" href="../index.html#projects">← back to the record</a></div>
+            </div>
+            <figure class="pp-polaroid">
+                <span class="tape"></span>
+                <div class="pp-cover" style="--pc:#5A1828"><span class="pp-glyph">DNA</span></div>
+                <figcaption>scroll the helix ✶</figcaption>
+            </figure>
+            <span class="pp-stamp" aria-hidden="true">track<br>03<br>side A</span>
+        </section>
+
+        <section class="pp-body">
+            <div class="pp-col">
+                <h2 class="h-section">what it is</h2>
+                <p>AtlasLife explains molecular biology for curious non-specialists. A Three.js scene renders a DNA model that rotates as you scroll, and each stop along the helix opens its own page.</p><p>Beyond the tour there's a small hands-on tool and a plain-language glossary, so visitors can play with sequences instead of only reading about them.</p>
+                <h2 class="h-section">the tour</h2>
+                <ol class="pp-steps"><li><b>How DNA is built</b><span>Two backbones, four bases, and the pairing rules that hold them together.</span></li><li><b>How it copies itself</b><span>Unzip, prime, extend, stitch — one double helix becomes two.</span></li><li><b>How genes become proteins</b><span>Transcription and translation: from a sequence of letters to a working molecule.</span></li><li><b>How it changes</b><span>Mutations, repair, and why a single letter can matter — or not at all.</span></li><li><b>Complement a strand</b><span>Type a short sequence and see its partner strand and the protein it would build.</span></li></ol>
+            </div>
+            <aside class="pp-side">
+                <div class="pp-note">
+                    <span class="tape"></span>
+                    <p class="script">built with</p>
+                    <ul><li>HTML, CSS &amp; vanilla JavaScript</li><li>Three.js · GLTF DNA model</li><li>OrbitControls for drag-to-rotate</li><li>Client-side routing between tour pages</li></ul>
+                </div>
+                <div class="pp-note pp-note--paper">
+                    <span class="tape"></span>
+                    <p class="script">good to know</p>
+                    <ul><li>No framework — everything is plain HTML, CSS and JavaScript.</li><li>A glossary defines twelve terms from the tour in plain language.</li><li>The 3D model needs a local web server to load (not <code>file://</code>).</li></ul>
+                </div>
+            </aside>
+        </section>
+
+        <nav class="pp-next" aria-label="More projects">
+            <a href="ai-agents.html"><small>← track 02</small><strong>AI Agents</strong></a>
+            <a href="digital-pathology.html"><small>track 04 →</small><strong>Machine Learning applied to Digital Pathology</strong></a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>© 2026 Ideli Zanesco — made with paper, glue &amp; code</p>
+    </footer>
+</body>
+</html>

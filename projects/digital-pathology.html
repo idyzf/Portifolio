@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning applied to Digital Pathology — Ideli Zanesco</title>
+    <meta name="description" content="An R and Python pipeline that segments cells in pathology images and predicts IHC results.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./project.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <a href="../index.html" class="logo">IZ</a>
+        <a href="../index.html#projects" class="pp-back">← back to the record</a>
+    </header>
+
+    <main>
+
+        <section class="pp-hero">
+            <div class="pp-hero-copy">
+                <p class="pp-kicker">side A · track 04</p>
+                <h1 class="pp-title pp-title--long">Machine Learning applied to Digital Pathology</h1>
+                <p class="pp-tagline">teaching a model to read IHC slides</p>
+                <p class="pp-lede">A Python and R-based machine learning pipeline that segments cells in digital pathology images and predicts quantitative and qualitative immunohistochemistry (IHC) results.</p>
+                <ul class="tags"><li>R</li><li>EBImage</li><li>Random forest</li><li>Reticulate</li><li>Python</li></ul>
+                <div class="pp-actions"><a class="btn" href="https://github.com/idyzf/Image-Analysis-reticulate" target="_blank" rel="noopener">see the code ↗</a><a class="hand-link" href="../index.html#projects">← back to the record</a></div>
+            </div>
+            <figure class="pp-polaroid">
+                <span class="tape"></span>
+                <div class="pp-cover" style="--pc:#9B2C1F"><span class="pp-glyph">ML</span><img src="../Project1.png" alt="Screenshot of Machine Learning applied to Digital Pathology"></div>
+                <figcaption>nuclei, counted ✶</figcaption>
+            </figure>
+            <span class="pp-stamp" aria-hidden="true">track<br>04<br>side A</span>
+        </section>
+
+        <section class="pp-body">
+            <div class="pp-col">
+                <h2 class="h-section">what it is</h2>
+                <p>Immunohistochemistry (IHC) is usually scored by eye, slide by slide. This pipeline turns stained tissue images into numbers: it finds every nucleus, measures it, and decides whether it's positive or negative for the stain.</p><p>The result is a reproducible, per-nucleus readout that can be summarised into both quantitative and qualitative IHC results.</p>
+                <h2 class="h-section">how it works</h2>
+                <ol class="pp-steps"><li><b>Load &amp; clean</b><span>TIFF images are read with EBImage and smoothed with a median filter.</span></li><li><b>Segment</b><span>A distance map plus watershed splits touching nuclei, and each object gets its own label.</span></li><li><b>Measure</b><span>Shape and intensity features are computed for every nucleus on each colour channel, then explored with PCA.</span></li><li><b>Classify</b><span>A random forest (2,000 trees) trained on hand-labelled positive and negative nuclei uses DAB-stain intensity features; a confusion matrix checks it.</span></li><li><b>Report</b><span>Predictions for each nucleus are collected and exported to Excel for analysis.</span></li></ol>
+            </div>
+            <aside class="pp-side">
+                <div class="pp-note">
+                    <span class="tape"></span>
+                    <p class="script">built with</p>
+                    <ul><li>R · EBImage (segmentation &amp; features)</li><li>randomForest · caret</li><li>Python via reticulate</li><li>tiff · dplyr · openxlsx</li></ul>
+                </div>
+                <div class="pp-note pp-note--paper">
+                    <span class="tape"></span>
+                    <p class="script">why it matters</p>
+                    <ul><li>Removes observer-to-observer variation from IHC scoring.</li><li>Works nucleus by nucleus, not just on whole-image averages.</li><li>The trained model can be saved and reused on new slides.</li></ul>
+                </div>
+            </aside>
+        </section>
+
+        <nav class="pp-next" aria-label="More projects">
+            <a href="atlaslife.html"><small>← track 03</small><strong>AtlasLife</strong></a>
+            <a href="gene-expression.html"><small>track 05 →</small><strong>Gene Expression by Neural-Network Analysis</strong></a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>© 2026 Ideli Zanesco — made with paper, glue &amp; code</p>
+    </footer>
+</body>
+</html>
