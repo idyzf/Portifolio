@@ -7,13 +7,14 @@
 
     // themes: cream | blush | brick | pink
     const SKILLS = [
-        { title: 'Python', sub: 'Scripting, pipelines & data wrangling.', tools: 'pandas · numpy · biopython · scikit-learn', level: 5, glyph: 'Py', icon: 'fa-brands fa-python', theme: 'cream' },
-        { title: 'R', sub: 'Statistics, Bioconductor & beautiful plots.', tools: 'tidyverse · ggplot2 · Bioconductor', level: 4, glyph: 'R', icon: 'fa-solid fa-chart-line', theme: 'blush' },
-        { title: 'Bioinformatics', sub: 'From raw sequences to biological insight.', tools: 'genomics · sequence analysis · pipelines', level: 5, glyph: 'DNA', icon: 'fa-solid fa-dna', theme: 'brick' },
-        { title: 'Machine Learning', sub: 'Models that learn, predict and explain.', tools: 'scikit-learn · feature engineering · evaluation', level: 4, glyph: 'ML', icon: 'fa-solid fa-brain', theme: 'pink' },
-        { title: 'Data Analysis', sub: 'Turning messy tables into clear stories.', tools: 'EDA · statistics · visualization', level: 5, glyph: 'Σ', icon: 'fa-solid fa-magnifying-glass-chart', theme: 'cream' },
-        { title: 'SQL', sub: 'Querying, joining and keeping data tidy.', tools: 'SQL · databases · data modeling', level: 3, glyph: 'SQL', icon: 'fa-solid fa-database', theme: 'blush' },
-        { title: 'Linux & Git', sub: 'Shell, servers and version control.', tools: 'bash · servers · git · GitHub', level: 4, glyph: '$_', icon: 'fa-brands fa-git-alt', theme: 'brick' },
+        { title: 'Biotechnology', sub: 'Where it all started: biology as a technology.', tools: 'molecular biology · lab workflows', level: 5, glyph: 'Bio', icon: 'fa-solid fa-flask', theme: 'cream' },
+        { title: 'Front-end', sub: 'Interfaces people actually enjoy using.', tools: 'HTML · CSS · JavaScript · Figma', level: 4, glyph: '</>', icon: 'fa-brands fa-figma', theme: 'blush' },
+        { title: 'Bioinformatics', sub: 'From raw sequences to biological insight.', tools: 'sequence analysis · NGS · pipelines', level: 5, glyph: 'NGS', icon: 'fa-solid fa-laptop-code', theme: 'brick' },
+        { title: 'Back-end', sub: 'Services and data behind the screen.', tools: 'Python · Docker · MongoDB', level: 3, glyph: 'API', icon: 'fa-solid fa-server', theme: 'pink' },
+        { title: 'Genomics', sub: 'Reading the code of life, at scale.', tools: 'sequencing · genomics software', level: 5, glyph: 'DNA', icon: 'fa-solid fa-dna', theme: 'cream' },
+        { title: 'Data Analysis', sub: 'Turning messy tables into clear stories.', tools: 'R · Python · SQL · machine learning', level: 4, glyph: 'Σ', icon: 'fa-solid fa-magnifying-glass-chart', theme: 'blush' },
+        { title: 'Scripting & Structure', sub: 'Shell, servers and version control.', tools: 'Linux · Git · HPC', level: 4, glyph: '$_', icon: 'fa-solid fa-terminal', theme: 'brick' },
+        { title: 'AI', sub: 'Putting language models to work, with purpose.', tools: 'open-source models · prompt engineering · building agents', level: 3, glyph: 'AI', icon: 'fa-solid fa-robot', theme: 'pink' },
     ];
 
     // img: optional screenshot path; without it a collage cover is drawn (color + glyph)
