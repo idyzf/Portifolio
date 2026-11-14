@@ -192,7 +192,7 @@
 
         // the two lanyard straps in the photo, in photo pixels (keep in sync with .photo-straps in index.html)
         const PHOTO = { w: 899, h: 1599, strap: 72 };
-        const STRAPS = [[[298, 1000], [352, 1620]], [[529, 868], [391, 1620]]];
+        const STRAPS = [[[298, 1000], [352, 1620]], [[512, 960], [391, 1620]]];
         const dirs = STRAPS.map(([p, q]) => { const dx = q[0] - p[0], dy = q[1] - p[1], l = Math.hypot(dx, dy); return [dx / l, dy / l]; });
 
         // put an anchor where each strap leaves the bottom of the (object-fit: cover) photo

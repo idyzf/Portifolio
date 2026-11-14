@@ -67,17 +67,41 @@
                         <!-- paper straps pasted over the lanyard in the photo (coordinates are in the photo's own pixels, 899×1599) -->
                         <svg class="photo-straps" viewBox="0 0 899 1599" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                             <defs>
-                                <path id="photoStrapL" d="M298,1000 L352,1620"></path>
-                                <path id="photoStrapR" d="M529,868 L391,1620"></path>
+                                <!-- left strap comes out from under the sleeve; right strap tucks under the collar -->
+                                <path id="photoStrapL" d="M281,850 L298,1000 L352,1620"></path>
+                                <path id="photoStrapR" d="M660,872 Q532,858 512,960 L391,1620"></path>
+                                <!-- outline of the sleeve (hand on face) and of the shirt collar -->
+                                <path id="sleeveEdge" d="M330,600 L360,780 L355,900 L345,960 L322,1005 L290,1035 L270,1095 L250,1160 L225,1240 L195,1330 L120,1520"></path>
+                                <path id="collarEdge" d="M562,720 L558,790 L549,850 L545,900 L543,955 L548,982 L600,990 L700,996 L899,1000"></path>
+                                <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9"></feGaussianBlur></filter>
+                                <filter id="edgeShadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="11"></feGaussianBlur></filter>
+                                <mask id="clothesMask" maskUnits="userSpaceOnUse" x="0" y="0" width="899" height="1599">
+                                    <rect width="899" height="1599" fill="#fff"></rect>
+                                    <path d="M0,600 L330,600 L360,780 L355,900 L345,960 L322,1005 L290,1035 L270,1095 L250,1160 L225,1240 L195,1330 L120,1520 L0,1520 Z" fill="#000"></path>
+                                    <path d="M562,700 L899,700 L899,1000 L700,996 L600,990 L548,982 L543,955 L545,900 L549,850 L558,790 Z" fill="#000"></path>
+                                </mask>
+                                <mask id="onStraps" maskUnits="userSpaceOnUse" x="0" y="0" width="899" height="1599">
+                                    <use href="#photoStrapL" class="ps-maskstroke"></use>
+                                    <use href="#photoStrapR" class="ps-maskstroke"></use>
+                                </mask>
                             </defs>
-                            <use href="#photoStrapL" class="ps-shadow"></use>
-                            <use href="#photoStrapR" class="ps-shadow"></use>
-                            <use href="#photoStrapL" class="ps"></use>
-                            <use href="#photoStrapR" class="ps"></use>
-                            <use href="#photoStrapL" class="ps-stitch"></use>
-                            <use href="#photoStrapR" class="ps-stitch"></use>
-                            <text class="ps-text" dominant-baseline="central"><textPath href="#photoStrapL" startOffset="14">IDELI ZANESCO ✦ IDELI ZANESCO ✦ IDELI ZANESCO ✦</textPath></text>
-                            <text class="ps-text" dominant-baseline="central"><textPath href="#photoStrapR" startOffset="14">IDELI ZANESCO ✦ IDELI ZANESCO ✦ IDELI ZANESCO ✦</textPath></text>
+                            <g mask="url(#clothesMask)">
+                                <use href="#photoStrapL" class="ps-shadow" filter="url(#softShadow)"></use>
+                                <use href="#photoStrapR" class="ps-shadow" filter="url(#softShadow)"></use>
+                                <use href="#photoStrapL" class="ps"></use>
+                                <use href="#photoStrapR" class="ps"></use>
+                                <use href="#photoStrapL" class="ps-stitch"></use>
+                                <use href="#photoStrapR" class="ps-stitch"></use>
+                                <text class="ps-text" dominant-baseline="central"><textPath href="#photoStrapL" startOffset="200">IDELI ZANESCO ✦ IDELI ZANESCO ✦ IDELI ZANESCO ✦</textPath></text>
+                                <text class="ps-text" dominant-baseline="central"><textPath href="#photoStrapR" startOffset="230">IDELI ZANESCO ✦ IDELI ZANESCO ✦ IDELI ZANESCO ✦</textPath></text>
+                                <!-- shadow the sleeve and collar cast onto the straps -->
+                                <g mask="url(#onStraps)">
+                                    <g filter="url(#edgeShadow)">
+                                        <use href="#sleeveEdge" class="ps-edge" transform="translate(20 8)"></use>
+                                        <use href="#collarEdge" class="ps-edge" transform="translate(-12 16)"></use>
+                                    </g>
+                                </g>
+                            </g>
                         </svg>
                         <span class="photo-anchor"></span>
                         <span class="photo-anchor"></span>
@@ -126,7 +150,7 @@
                             <span class="badge-slot"></span>
                             <div class="badge-head"><span>portfolio pass</span><span>№ 0001</span></div>
                             <div class="badge-photo">
-                                <img src="assets/ideli.jpeg" alt="" onerror="this.parentElement.classList.add('no-photo')">
+                                <img src="foto1.jpeg" alt="" onerror="this.parentElement.classList.add('no-photo')">
                                 <span class="badge-initials">IZ</span>
                             </div>
                             <p class="badge-name">Ideli<br><em>Zanesco</em></p>
