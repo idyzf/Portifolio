@@ -23,9 +23,9 @@
         <section class="pp-hero">
             <div class="pp-hero-copy">
                 <p class="pp-kicker">side A · track 02</p>
-                <h1 class="pp-title">AI Agents</h1>
-                <p class="pp-tagline">a local LLM that lives in Discord</p>
-                <p class="pp-lede">A Discord bot backed by a self-hosted language model: an open-weight Qwen model served by Ollama, wrapped in a Qwen-Agent assistant and shipped as a Docker Compose service.</p>
+                <h1 class="pp-title">AI Agent - Personal Assistant</h1>
+                <p class="pp-tagline">a local LLM that acts like a personal assistant and reaches you using discord</p>
+                <p class="pp-lede">A Discord bot agent backed by a self-hosted language model: an open-weight Qwen model served by Ollama, wrapped in a Qwen-Agent assistant and shipped as a Docker Compose service.</p>
                 <ul class="tags"><li>Python</li><li>Qwen-Agent</li><li>Ollama</li><li>Discord</li><li>Docker</li></ul>
                 <div class="pp-actions"><a class="btn" href="https://github.com/idyzf/AI-Agents" target="_blank" rel="noopener">see the code ↗</a><a class="hand-link" href="../index.html#projects">← back to the record</a></div>
             </div>
@@ -40,9 +40,9 @@
         <section class="pp-body">
             <div class="pp-col">
                 <h2 class="h-section">what it is</h2>
-                <p>The idea is a personal assistant you can talk to right inside Discord, without sending conversations to a paid API. The model runs locally through Ollama's OpenAI-compatible endpoint, so swapping models is a single environment variable.</p><p>It's also the base for something bigger: the Qwen-Agent framework supports tools and MCP servers, so the same bot can grow into an agent that acts, not only answers.</p>
+                <p>The idea is a personal assistant you can talk to right inside Discord, without sending conversations to a paid API. It checks the events of the week, day-by-day and send you a summary of all emails you have recieved in the last 24h. The model runs locally through Ollama's OpenAI-compatible endpoint, so swapping models is a single environment variable.</p><p>It's also the base for something bigger: the Qwen-Agent framework supports tools and MCP servers, so the same bot can grow into an agent that acts, not only answers.</p>
                 <h2 class="h-section">how it works</h2>
-                <ol class="pp-steps"><li><b>Listen</b><span>In direct messages the bot always answers; in servers it only replies when someone @mentions it.</span></li><li><b>Remember</b><span>Each channel keeps a short rolling history of the last 20 messages, so replies have context.</span></li><li><b>Think</b><span>The history goes to a Qwen-Agent <em>Assistant</em> running <code>qwen2.5:7b-instruct</code> on Ollama.</span></li><li><b>Reply</b><span>The answer is split into chunks under Discord's 2,000-character limit and posted back to the channel.</span></li></ol>
+                <ol class="pp-steps"><li><b>Listen</b><span>In direct messages the bot always answers; in servers it only replies when someone @mentions it.</span></li><li><b>Remember</b><span>Each channel keeps a short rolling history of the last 20 messages, so replies have context.</span></li><li><b>Think</b><span>The history goes to a Qwen-Agent <em>Assistant</em> running <code>qwen2.5:7b-instruct</code> on Ollama. Is acts in loop to aways send reminders and summaries of emails and events</span></li><li><b>Reply</b><span>The answer is split into chunks under Discord's 2,000-character limit and posted back to the channel.</span></li></ol>
             </div>
             <aside class="pp-side">
                 <div class="pp-note">
@@ -53,7 +53,7 @@
                 <div class="pp-note pp-note--paper">
                     <span class="tape"></span>
                     <p class="script">good to know</p>
-                    <ul><li>The model is set with <code>MODEL_NAME</code> — any Ollama model works.</li><li>Model weights live in a Docker volume, so they survive rebuilds.</li><li>Memory is in-process for now; a persistent store is on the list.</li><li>Next up: tools and MCP servers (the code interpreter needs Docker-in-Docker).</li></ul>
+                    <ul><li>The model is set with any Ollama model.</li><li>Model weights live in a Docker volume, so they survive rebuilds.</li><li>Memory is in-process for now; a persistent store is on the list.</li><li>Next up: Multi-agents structure.</li></ul>
                 </div>
             </aside>
         </section>
@@ -65,7 +65,7 @@
     </main>
 
     <footer>
-        <p>© 2026 Ideli Zanesco — made with paper, glue &amp; code</p>
+        <p>© 2026 Ideli Zanesco</p>
     </footer>
 </body>
 </html>
